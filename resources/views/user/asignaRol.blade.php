@@ -23,7 +23,7 @@ Asignar Rol
         <p class="h5">NOMBRE : </p>
         <p class="form-control">{{$user->name}}</p>
         <hr>
-        <h2 class="h5">LISTADO DE ROLES</h2>
+        <h2 class="h5 mb-3">LISTADO DE ROLES</h2>
         {!! Form::model($user, ['route' => ['users.updateRol',$user], 'method' => 'put']) !!}
         @foreach ($roles as $role)
         <div class="mb-2">

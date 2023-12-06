@@ -40,7 +40,7 @@
 
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}" />
     <style>
-      
+
     </style>
     @yield('css')
     @livewireStyles
@@ -51,15 +51,15 @@
 
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar">
-            <div class="sidebar-header bg-secondary">
+            <div class="sidebar-header">
                 <a href="#" class="sidebar-brand">
-                    <img src="{{ asset('admin/assets/images/favicon.png') }}" style="width: 35px">
-                    {{ env('app_name') }}
+                    {{-- <img src="{{ asset('admin/assets/images/favicon.png') }}" style="width: 25px"> --}}
+                    <small>SOFT</small> <span>{{ env('app_name') }}</span>
                 </a>
                 <div class="sidebar-toggler not-active">
-                    <span style="background-color: #ebeced"></span>
-                    <span style="background-color: #ebeced"></span>
-                    <span style="background-color: #ebeced"></span>
+                    <span style="background-color: #000865"></span>
+                    <span style="background-color: #000865"></span>
+                    <span style="background-color: #000865"></span>
                 </div>
             </div>
             @include('layouts.partials.sidebar')
@@ -162,6 +162,15 @@
             });
         })
 
+         $(document).ready(() => {
+            $('.dataTableD').dataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+                },
+                order: [[0, 'desc']]
+            });
+        })
+
         $('.delete').submit(function(e) {
             Swal.fire({
                 title: "ELIMINAR REGISTRO",
@@ -178,6 +187,14 @@
                 }
             });
         })
+
+        function preview(elem, output = '') {
+            Array.from(elem.files).map((file) => {
+                const blobUrl = window.URL.createObjectURL(file)
+                output += `<img src=${blobUrl}>`
+            })
+            elem.nextElementSibling.innerHTML = output
+        }
     </script>
     @livewireScripts
     @yield('js')

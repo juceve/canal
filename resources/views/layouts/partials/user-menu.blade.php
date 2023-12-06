@@ -1,4 +1,4 @@
-<nav class="navbar" style="background-color: #ebeced">
+<nav class="navbar">
     <a href="#" class="sidebar-toggler">
         <i data-feather="menu"></i>
     </a>
