@@ -84,11 +84,16 @@ class ClienteController extends Controller
 
             if ($request->hasFile('imagenes')) {
                 $imagenes = $request->file('imagenes');
-                $i = 1;
+                
                 foreach ($imagenes as $image) {
                     $extension = $image->getClientOriginalExtension();
 
-                    $ruta = storage_path() . '\app\public\imagenes\clientes/' . $cliente->id . "_" . $i . "." . $extension;
+                    $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    $file = $cliente->id . substr(str_shuffle($permitted_chars), 0, 16) . '.' . $extension;
+                    
+                    $ruta = storage_path() . '\app\public\imagenes\clientes/' .  $file;
+
+                    
 
                     Image::make($image)
                         ->resize(600, null, function ($constraint) {
@@ -97,12 +102,11 @@ class ClienteController extends Controller
                         ->save($ruta);
 
                     $imgcli = Imagencliente::create([
-                        'url' =>  'imagenes\clientes/' . $cliente->id . "_" . $i . "." . $extension,
+                        'url' =>  'imagenes\clientes/' . $file,
                         'extension' => $extension,
                         'cliente_id' => $cliente->id,
                     ]);
-
-                    $i++;
+                    
                 }
             }
 

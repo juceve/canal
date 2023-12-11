@@ -11,7 +11,7 @@
     <meta name="keywords"
         content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web"> --}}
 
-    <title>@yield('template_title') | {{ env('app_name') }}</title>
+    <title>@yield('template_title') | {{ config('app.name') }}</title>
 
     <!-- Fonts -->
     {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,6 +39,7 @@
     <!-- End layout styles -->
 
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}" />
+    <link rel="stylesheet" href="{{ asset('plugins/light-box/lightbox.css') }}">
     <style>
 
     </style>
@@ -54,7 +55,7 @@
             <div class="sidebar-header">
                 <a href="#" class="sidebar-brand">
                     {{-- <img src="{{ asset('admin/assets/images/favicon.png') }}" style="width: 25px"> --}}
-                    <small>SOFT</small> <span>{{ env('app_name') }}</span>
+                    <small>SOFT</small> <span>{{ config('app.name') }}</span>
                 </a>
                 <div class="sidebar-toggler not-active">
                     <span style="background-color: #000865"></span>
@@ -162,12 +163,14 @@
             });
         })
 
-         $(document).ready(() => {
+        $(document).ready(() => {
             $('.dataTableD').dataTable({
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
                 },
-                order: [[0, 'desc']]
+                order: [
+                    [0, 'desc']
+                ]
             });
         })
 
@@ -197,6 +200,37 @@
         }
     </script>
     @livewireScripts
+
+    <script>
+        Livewire.on('successL', msg => {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'bottom-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+            });
+
+            Toast.fire({
+                icon: 'success',
+                title: msg
+            })
+        });
+        Livewire.on('errorL', msg => {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'bottom-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+            });
+
+            Toast.fire({
+                icon: 'error',
+                title: msg
+            })
+        });
+    </script>
     @yield('js')
 
 

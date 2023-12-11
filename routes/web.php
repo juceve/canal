@@ -6,6 +6,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TipodocController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ZonaController;
+use App\Http\Livewire\Fotosclientes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -41,4 +42,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('objetivos',ObjetivoController::class)->names('objetivos');
     Route::resource('clientes',ClienteController::class)->names('clientes');
     Route::get('clientes/statuschange/{id}',[ClienteController::class,'statuschange'])->name('clientes.statuschange');
+
+    Route::get('clientes/fotos/{cliente_id}',Fotosclientes::class)->name('fotosclientes');
 });

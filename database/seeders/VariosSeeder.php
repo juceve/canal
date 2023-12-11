@@ -60,8 +60,5 @@ class VariosSeeder extends Seeder
         Objetivo::create([
             'nombre' => 'PASATIEMPO'
         ]);
-        Objetivo::create([
-            'nombre' => 'OTROS'
-        ]);
     }
 }

@@ -53,7 +53,7 @@
                                     <div class="auth-form-wrapper px-4 py-5">
                                         <div class="text-center mb-5">
                                             <a href="#"
-                                                class="noble-ui-logo d-block mb-2">{{ env('app_name') }}</a>
+                                                class="noble-ui-logo d-block mb-2">SOFT<span>{{ config('app.name') }}</span></a>
                                             <h5 class="text-muted fw-normal mb-4">Ingrese sus credenciales.</h5>
                                         </div>
                                         <form method="POST" action="{{ route('login') }}">

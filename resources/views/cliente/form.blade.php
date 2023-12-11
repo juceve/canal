@@ -121,7 +121,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 mt-2" id="divObj" @if (!$cliente->nObjetivos) style="display: none;"@endif>
+                <div class="col-12 mt-2" id="divObj" @if (!$cliente->nObjetivos) style="display: none;" @endif>
                     <div class="form-group{{ $errors->has('nObjetivos') ? ' has-error' : '' }}">
                         <label class="text-primary" for="nObjetivos">Otros objetivos</label>
                         {!! Form::textarea('nObjetivos', $cliente->nObjetivos, [
@@ -137,15 +137,18 @@
         </div>
     </div>
 
-    <h5 class="mb-2">FOTOGRAFIAS</h5>
-    <div class="card mb-4">
-        <div class="card-body">
-            <label>Imagenes:</label>
-            <input type="file" class="form-control" name="imagenes[]" accept="image/*" onchange="preview(this)"
-                multiple>
-            <div class="preview-area"></div>
+    @if ($cliente->imagenclientes->count() == 0)
+        <h5 class="mb-2">FOTOGRAFIAS</h5>
+        <div class="card mb-4">
+            <div class="card-body">
+                <label>Imagenes:</label>
+                <input type="file" class="form-control" name="imagenes[]" accept="image/*" onchange="preview(this)"
+                    multiple>
+                <div class="preview-area"></div>
+            </div>
         </div>
-    </div>
+    @endif
+
 
     <div class="box-footer mt20">
         <div class="col-12 col-md-6 mb-3 mt-3 d-grid">

@@ -1,7 +1,7 @@
-$(function() {
+$(function () {
 
-  showSwal = function(type) {
-  'use strict';
+  showSwal = function (type) {
+    'use strict';
     if (type === 'basic') {
       swal.fire({
         text: 'Any fool can use a computer',
@@ -56,7 +56,7 @@ $(function() {
         },
         buttonsStyling: false,
       })
-      
+
       swalWithBootstrapButtons.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -130,7 +130,7 @@ $(function() {
         timer: 3000,
         timerProgressBar: true,
       });
-      
+
       Toast.fire({
         icon: 'success',
         title: 'Signed in successfully'
