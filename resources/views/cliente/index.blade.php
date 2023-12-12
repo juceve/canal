@@ -30,7 +30,7 @@
 
 
                     <div class="card-body">
-                        {{-- <div class="table-responsive"> --}}
+                        <div class="table-responsive">
                         <table class="table table-striped table-hover dataTableD">
                             <thead class="table-primary">
                                 <tr>
@@ -113,7 +113,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{-- </div> --}}
+                        </div>
                     </div>
                 </div>
 

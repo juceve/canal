@@ -17,10 +17,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property $email
  * @property $fechanacimiento
  * @property $zona_id
+ * @property $genero_id
+ * @property $nObjetivos
+ * @property $status
  * @property $created_at
  * @property $updated_at
  *
+ * @property Datosfisico[] $datosfisicos
  * @property Detalleobjetivo[] $detalleobjetivos
+ * @property Genero $genero
  * @property Imagencliente[] $imagenclientes
  * @property Tipodoc $tipodoc
  * @property Zona $zona
@@ -36,6 +41,8 @@ class Cliente extends Model
 		'email' => 'required',
 		'fechanacimiento' => 'required',
 		'zona_id' => 'required',
+		'genero_id' => 'required',
+		'status' => 'required',
     ];
 
     protected $perPage = 20;
@@ -45,15 +52,31 @@ class Cliente extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre','direccion','tipodoc_id','nrodoc','celular','telefono','email','fechanacimiento','zona_id','nObjetivos','status'];
+    protected $fillable = ['nombre','direccion','tipodoc_id','nrodoc','celular','telefono','email','fechanacimiento','zona_id','genero_id','nObjetivos','status'];
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function datosfisicos()
+    {
+        return $this->hasMany('App\Models\Datosfisico', 'cliente_id', 'id');
+    }
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function detalleobjetivos()
     {
         return $this->hasMany('App\Models\Detalleobjetivo', 'cliente_id', 'id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function genero()
+    {
+        return $this->hasOne('App\Models\Genero', 'id', 'genero_id');
     }
     
     /**

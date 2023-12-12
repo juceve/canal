@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Contextura;
+use App\Models\Datosfisico;
 use App\Models\Detalleobjetivo;
+use App\Models\Genero;
 use App\Models\Imagencliente;
 use App\Models\Objetivo;
 use App\Models\Tipodoc;
@@ -42,7 +45,10 @@ class ClienteController extends Controller
         $tipodocs = Tipodoc::all()->pluck('nombre', 'id');
         $zonas = Zona::all()->pluck('nombre', 'id');
         $objetivos = Objetivo::all();
-        return view('cliente.create', compact('cliente', 'tipodocs', 'zonas', 'objetivos'));
+        $generos = Genero::all()->pluck('nombre', 'id');
+        $contexturas = Contextura::all()->pluck('nombre', 'id');
+        $estadofisico = null;
+        return view('cliente.create', compact('cliente', 'tipodocs', 'zonas', 'objetivos', 'generos', 'contexturas', 'estadofisico'));
     }
 
     /**
@@ -59,13 +65,25 @@ class ClienteController extends Controller
             'email' => 'required|email',
             'fechanacimiento' => 'required',
             'zona_id' => 'required',
+            'peso' => 'required',
+            'altura' => 'required',
+            'imc' => 'required',
+            'contextura_id' => 'required',
+            'genero_id' => 'required',
+            'direccion' => 'required',
+            'tipodoc_id' => 'required',
+            'nrodoc' => 'required',
         ]);
 
 
         DB::beginTransaction();
         try {
+
+            // DATOS DEL CLIENTE
             $cliente = Cliente::create($request->all());
 
+
+            // OBJETIVOS DEL CLIENTE
             $objetivos = $request->objetivos;
 
             if ($objetivos) {
@@ -82,18 +100,20 @@ class ClienteController extends Controller
                 $cliente->save();
             }
 
+
+            // IMAGENES
             if ($request->hasFile('imagenes')) {
                 $imagenes = $request->file('imagenes');
-                
+
                 foreach ($imagenes as $image) {
                     $extension = $image->getClientOriginalExtension();
 
                     $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
                     $file = $cliente->id . substr(str_shuffle($permitted_chars), 0, 16) . '.' . $extension;
-                    
+
                     $ruta = storage_path() . '\app\public\imagenes\clientes/' .  $file;
 
-                    
+
 
                     Image::make($image)
                         ->resize(600, null, function ($constraint) {
@@ -106,10 +126,19 @@ class ClienteController extends Controller
                         'extension' => $extension,
                         'cliente_id' => $cliente->id,
                     ]);
-                    
                 }
             }
 
+
+            // ESTADO FISICO INICIAL
+            $estadofisico = Datosfisico::create([
+                'cliente_id' => $cliente->id,
+                'contextura_id' => $request->contextura_id,
+                'peso' => $request->peso,
+                'altura' => $request->altura,
+                'imc' => $request->imc,
+                'alergias' => $request->alergias,
+            ]);
 
             DB::commit();
 
@@ -131,18 +160,21 @@ class ClienteController extends Controller
     public function show($id)
     {
         $cliente = Cliente::find($id);
-
-        return view('cliente.show', compact('cliente'));
+        $estadofisico = Datosfisico::where('cliente_id',$cliente->id)->orderBy('id','desc')->first();
+        return view('cliente.show', compact('cliente','estadofisico'));
     }
 
 
     public function edit($id)
     {
-        $cliente = Cliente::find($id);
-        $tipodocs = Tipodoc::all()->pluck('nombre', 'id');
-        $zonas = Zona::all()->pluck('nombre', 'id');
-        $objetivos = Objetivo::all();
-        return view('cliente.edit', compact('cliente', 'tipodocs', 'zonas', 'objetivos'));
+        $cliente        = Cliente::find($id);
+        $tipodocs       = Tipodoc::all()->pluck('nombre', 'id');
+        $zonas          = Zona::all()->pluck('nombre', 'id');
+        $objetivos      = Objetivo::all();
+        $generos        = Genero::all()->pluck('nombre', 'id');
+        $contexturas    = Contextura::all()->pluck('nombre', 'id');
+        $estadofisico   = Datosfisico::where('cliente_id',$cliente->id)->orderBy('id','desc')->first();
+        return view('cliente.edit', compact('cliente', 'tipodocs', 'zonas', 'objetivos', 'generos', 'contexturas','estadofisico'));
     }
 
 
@@ -154,6 +186,14 @@ class ClienteController extends Controller
             'email' => 'required|email|unique:clientes,id,' . $cliente->id,
             'fechanacimiento' => 'required',
             'zona_id' => 'required',
+            'peso' => 'required',
+            'altura' => 'required',
+            'imc' => 'required',
+            'contextura_id' => 'required',
+            'genero_id' => 'required',
+            'direccion' => 'required',
+            'tipodoc_id' => 'required',
+            'nrodoc' => 'required',
         ]);
         DB::beginTransaction();
         try {
@@ -176,6 +216,16 @@ class ClienteController extends Controller
                 $cliente->save();
             }
 
+            // ESTADO FISICO INICIAL
+            $estadofisico = Datosfisico::create([
+                'cliente_id' => $cliente->id,
+                'contextura_id' => $request->contextura_id,
+                'peso' => $request->peso,
+                'altura' => $request->altura,
+                'imc' => $request->imc,
+                'alergias' => $request->alergias,
+            ]);
+
             DB::commit();
             return redirect()->route('clientes.index')
                 ->with('success', 'Cliente editado correctamente');
@@ -194,7 +244,7 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        
+
         Detalleobjetivo::where('cliente_id', $id)->delete();
         Imagencliente::where('cliente_id', $id)->delete();
         $cliente = Cliente::find($id)->delete();

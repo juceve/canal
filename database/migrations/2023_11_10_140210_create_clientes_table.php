@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('email',100);
             $table->date('fechanacimiento');
             $table->foreignId('zona_id')->constrained();
+            $table->foreignId('genero_id')->constrained();
             $table->longText('nObjetivos')->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();

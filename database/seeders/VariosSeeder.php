@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Contextura;
+use App\Models\Genero;
 use App\Models\Objetivo;
 use App\Models\Tipodoc;
 use App\Models\Zona;
@@ -59,6 +61,26 @@ class VariosSeeder extends Seeder
         ]);
         Objetivo::create([
             'nombre' => 'PASATIEMPO'
+        ]);
+
+        Contextura::create([
+            'nombre' => 'Contextura 1',
+        ]);
+        Contextura::create([
+            'nombre' => 'Contextura 2',
+        ]);
+        Contextura::create([
+            'nombre' => 'Contextura 3',
+        ]);
+
+        Genero::create([
+            'nombre' => 'Masculino',
+        ]);
+        Genero::create([
+            'nombre' => 'Femenino',
+        ]);
+        Genero::create([
+            'nombre' => 'No declarado',
         ]);
     }
 }

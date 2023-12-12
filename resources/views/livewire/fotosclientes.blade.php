@@ -23,40 +23,42 @@
                 <div class="card">
                     <div class="card-body">
                         <h6>Imágenes Registradas</h6>
-                        <table class="table table-hover" style="vertical-align: middle">
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Preview</th>
-                                    <th>Nombre</th>
-                                    <th style="width: 10px"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($imagenes as $imagen)
-                                    @php
-                                        $name = explode('/', $imagen->url);
-                                    @endphp
+                        <div class="table-responsive">
+                            <table class="table table-hover" style="vertical-align: middle">
+                                <thead>
                                     <tr>
-                                        <td>{{ $i++ }}</td>
-                                        <td>
-                                            {{-- <img src="{{Storage::url($imagen->url)}}"> --}}
-
-                                            <a href="#{{ $imagen->id }}">
-                                                <img src="{{ Storage::url($imagen->url) }}">
-                                            </a>
-                                        </td>
-                                        <td>{{ $name[1] }}</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-outline-danger" title="Eliminar"
-                                                onclick="eliminar({{ $imagen->id }})">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
+                                        <th>No.</th>
+                                        <th>Preview</th>
+                                        <th>Nombre</th>
+                                        <th style="width: 10px"></th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($imagenes as $imagen)
+                                        @php
+                                            $name = explode('/', $imagen->url);
+                                        @endphp
+                                        <tr>
+                                            <td>{{ $i++ }}</td>
+                                            <td>
+                                                {{-- <img src="{{Storage::url($imagen->url)}}"> --}}
+
+                                                <a href="#{{ $imagen->id }}">
+                                                    <img src="{{ Storage::url($imagen->url) }}" class="img-thumbnail">
+                                                </a>
+                                            </td>
+                                            <td>{{ $name[1] }}</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-danger" title="Eliminar"
+                                                    onclick="eliminar({{ $imagen->id }})">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                         @foreach ($imagenes as $imagen)
                             <article class="light-box" id="{{ $imagen->id }}">
                                 {{-- <a href="#4" class="light-box-next"><i class="bi bi-arrow-left"></i></a> --}}
