@@ -6,6 +6,8 @@ use App\Models\Contextura;
 use App\Models\Genero;
 use App\Models\Objetivo;
 use App\Models\Tipodoc;
+use App\Models\Vntestadopago;
+use App\Models\Vnttipopago;
 use App\Models\Zona;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -81,6 +83,44 @@ class VariosSeeder extends Seeder
         ]);
         Genero::create([
             'nombre' => 'No declarado',
+        ]);
+
+        Vntestadopago::create([
+            'nombre' => 'POR PAGAR',
+            'nombrecorto' => 'PP',
+        ]);
+        Vntestadopago::create([
+            'nombre' => 'PAGO REALIZADO',
+            'nombrecorto' => 'PR',
+        ]);
+        Vntestadopago::create([
+            'nombre' => 'PAGO CUOTAS',
+            'nombrecorto' => 'PC',
+        ]);
+        Vntestadopago::create([
+            'nombre' => 'PAGO ANULADO',
+            'nombrecorto' => 'PA',
+        ]);
+
+        Vnttipopago::create([
+            'nombre' => 'EFECTIVO',
+            'nombrecorto' => 'EF',
+            'factor' => 1,
+        ]);
+        Vnttipopago::create([
+            'nombre' => 'PAGO QR',
+            'nombrecorto' => 'QR',
+            'factor' => 1,
+        ]);
+        Vnttipopago::create([
+            'nombre' => 'DEPOSITO BANCARIO',
+            'nombrecorto' => 'DB',
+            'factor' => 1,
+        ]);
+        Vnttipopago::create([
+            'nombre' => 'GASTO ADMINISTRATIVO',
+            'nombrecorto' => 'GA',
+            'factor' => 0,
         ]);
     }
 }

@@ -5,24 +5,18 @@ ROLES
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-12">
-        <div class="page-title-box">
-            <h4 class="page-title">ROLES DE USUARIO</h4>
-        </div>
+<div style="display: flex; justify-content: space-between; align-items: center;" class="mb-3">
+
+    <h4>Roles de Usuario</h4>
+
+    <div class="float-right">
+        <a href="{{ route('admin.roles.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
+            <i class="fas fa-plus"></i> Nuevo
+        </a>
     </div>
 </div>
 <div class="card">
-    <div class="card-header bg-primary text-white">
-        Listado de Roles
-        <div style="float: right">
-            @can('admin.roles.create')
-            <a href="{{route('admin.roles.create')}}" class="btn btn-sm btn-primary">
-                 Nuevo <i class="fas fa-plus"></i>
-            </a>
-            @endcan
-        </div>
-    </div>
+    
     <div class="card-body">
         <table class="table table-bordered dataTable">
             <thead class="table-info">

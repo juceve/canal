@@ -6,27 +6,20 @@
 
 @section('content')
     <div class="container-fluid">
+        <div style="display: flex; justify-content: space-between; align-items: center;" class="mb-3">
+
+            <h4>Usuarios</h4>
+
+            <div class="float-right">
+                <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
+                    <i class="fas fa-plus"></i> Nuevo
+                </a>
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-
-                            <span id="card_title">
-                                Usuarios del Sistema
-                            </span>
-
-                            <div class="float-right">
-                                <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm float-right"
-                                    data-placement="left">
-                                    Nuevo <i class="fas fa-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="card-body">
+                                       <div class="card-body">
                         <div class="">
                             <table class="table dataTable" >
                                 <thead class="table-info">

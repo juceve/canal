@@ -162,7 +162,16 @@
                 },
             });
         })
-
+        $(document).ready(() => {
+            $('.dataTableLite').dataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+                },
+                "paging": true,
+                "ordering": false,
+                "info": false
+            });
+        })
         $(document).ready(() => {
             $('.dataTableD').dataTable({
                 language: {
@@ -229,6 +238,21 @@
                 icon: 'error',
                 title: msg
             })
+        });
+
+        Livewire.on('successOK', msg =>{
+            Swal.fire({
+                title: "Excelente!",
+                text: msg,
+                icon: "success"
+            });
+        });
+        Livewire.on('errorOK', msg =>{
+            Swal.fire({
+                title: "Error",
+                text: msg,
+                icon: "error"
+            });
         });
     </script>
     @yield('js')

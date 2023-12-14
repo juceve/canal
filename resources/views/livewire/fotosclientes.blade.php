@@ -22,6 +22,8 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
+                        <h4 class="text-secondary">{{$cliente->nombre}}</h4>
+                        <hr>
                         <h6>Imágenes Registradas</h6>
                         <div class="table-responsive">
                             <table class="table table-hover" style="vertical-align: middle">
