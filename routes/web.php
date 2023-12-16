@@ -4,12 +4,15 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ObjetivoController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ServicioController;
+use App\Http\Controllers\SuscripcioneController;
 use App\Http\Controllers\TipodocController;
 use App\Http\Controllers\TiposervicioController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ZonaController;
 use App\Http\Livewire\Fotosclientes;
+use App\Http\Livewire\Pruebas;
 use App\Http\Livewire\Vntsuscripciones;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -46,8 +49,12 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('clientes', ClienteController::class)->names('clientes');
     Route::resource('tiposervicios', TiposervicioController::class)->names('tiposervicios');
     Route::resource('servicios',ServicioController::class)->names('servicios');
+    Route::resource('admin/suscripciones',SuscripcioneController::class)->names('suscripciones');
 
     Route::get('clientes/statuschange/{id}', [ClienteController::class, 'statuschange'])->name('clientes.statuschange');
     Route::get('clientes/fotos/{cliente_id}', Fotosclientes::class)->name('fotosclientes');
-    Route::get('ventas/suscripciones',Vntsuscripciones::class)->name('ventas.suscripciones');
+    Route::get('ventas/suscripcion-cliente',Vntsuscripciones::class)->name('ventas.suscli');
+    
+
+    Route::get('pruebas',Pruebas::class)->name('pruebas');
 });

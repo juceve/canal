@@ -12,13 +12,13 @@
             <a class="nav-link" data-bs-toggle="collapse" href="#seguimientos" role="button"
                 aria-expanded="false" aria-controls="seguimientos">
                 <i class="link-icon" data-feather="list"></i>                
-                <span class="link-title">Seguimiento</span>
+                <span class="link-title">Suscripciones</span>
                 <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
             <div class="collapse" id="seguimientos">
                 <ul class="nav sub-menu">
                     <li class="nav-item">
-                        <a href="" class="nav-link">Suscripciones</a>
+                        <a href="{{route('suscripciones.index')}}" class="nav-link">Listado</a>
                     </li>
                 </ul>
             </div>
@@ -33,7 +33,7 @@
             <div class="collapse" id="ventas">
                 <ul class="nav sub-menu">
                     <li class="nav-item">
-                        <a href="{{route('ventas.suscripciones')}}" class="nav-link">Suscripciones</a>
+                        <a href="{{route('ventas.suscli')}}" class="nav-link">Servicios</a>
                     </li>
                 </ul>
             </div>

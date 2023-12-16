@@ -94,5 +94,8 @@ class Vntventa extends Model
         return $this->hasMany('App\Models\Vntpago', 'vntventa_id', 'id');
     }
     
-
+    public function suscripciones()
+    {
+        return $this->hasMany('App\Models\Suscripcione', 'vntventa_id', 'id');
+    }
 }

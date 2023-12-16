@@ -47,7 +47,7 @@
     @livewireStyles
 </head>
 
-<body>
+<body @yield('body_class')>
     <div class="main-wrapper">
 
         <!-- partial:partials/_sidebar.html -->

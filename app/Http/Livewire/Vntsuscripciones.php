@@ -3,13 +3,15 @@
 namespace App\Http\Livewire;
 
 use App\Models\Cliente;
+use App\Models\Horarioservicio;
 use App\Models\Servicio;
 use Livewire\Component;
 
 class Vntsuscripciones extends Component
 {
     public $cliente = null, $cliente_nombre = "", $clientes = null, $cliente_id = 0, $servicios = null;
-    public $pedido = array(), $selServicio = "", $totalPedido = 0, $fechas = array();
+    public $pedido = array(), $selServicio = "", $totalPedido = 0, $fechas = array(), $servicioAg = null,$horarios=null;
+    public $selHorario = "", $selFecha = "";
 
     public function mount()
     {
@@ -17,9 +19,18 @@ class Vntsuscripciones extends Component
         $this->servicios = Servicio::where('status', 1)->get();
     }
 
+    public function updatedSelServicio()
+    {        
+        $this->servicioAg = Servicio::find($this->selServicio);
+        $this->horarios = $this->servicioAg->horarioservicio;
+    }
+
     protected $rules = [
         'cliente_nombre' => 'required',
         'selServicio' => 'required',
+        'selFecha' => 'required',
+        'selHorario' => 'required',
+        
     ];
 
     public function render()
@@ -43,14 +54,20 @@ class Vntsuscripciones extends Component
     {
         $this->validate();
         if ($this->selServicio) {
+            $horario = Horarioservicio::find($this->selHorario);
             $servicio = Servicio::find($this->selServicio);
-            $this->pedido[] = $servicio->toArray();
+            $pedido = [];
+            $pedido[] = $servicio->toArray();
+            $pedido[] = $this->selFecha;
+            $pedido[] = array($this->selHorario,$horario->hora);
+            $this->pedido[] = $pedido;
 
-            $this->reset(['totalPedido', 'selServicio']);
+            $this->reset(['totalPedido', 'selServicio','selFecha', 'selHorario']);
             foreach ($this->pedido as $item) {
-                $this->totalPedido += $item['precio'];
+                $this->totalPedido += $item[0]['precio'];
             }
         }
+        
     }
 
     public function eliminar($i)
@@ -61,23 +78,22 @@ class Vntsuscripciones extends Component
 
         $this->reset(['totalPedido', 'selServicio']);
         foreach ($this->pedido as $item) {
-            $this->totalPedido += $item['precio'];
+            $this->totalPedido += $item[0]['precio'];
         }
     }
 
-    public function initPago()
-    {
-        $this->emit('obtenerFechas');
+    // public function initPago()
+    // {
+    //     $this->emit('obtenerFechas');
        
-    }
+    // }
 
-    public function pasarParamentros($fechas){    
+    public function pasarParamentros(){    
              
         $arrParamentros = array();
         $arrParamentros[] = 'suscripcionservicio';
         $arrParamentros[] = $this->cliente->toArray();
         $arrParamentros[] = $this->pedido;
-        $arrParamentros[] = $fechas;
         $arrParamentros[] =  $this->totalPedido;
         $this->emitTo('modalpago','paramentros',$arrParamentros);
     }

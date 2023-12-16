@@ -13,7 +13,7 @@
             </div>
 
             <div class="float-right">
-                <a href="{{ route('clientes.index') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
+                <a href="javascript:history.back()" class="btn btn-primary btn-sm float-right" data-placement="left">
                     <i class="fas fa-arrow-left"></i> Volver
                 </a>
             </div>

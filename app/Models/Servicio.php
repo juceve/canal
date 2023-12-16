@@ -23,32 +23,39 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Servicio extends Model
 {
-    
-    static $rules = [
-		'nombre' => 'required',
-		'precio' => 'required',
-		'cantdias' => 'required',
-		'tiposervicio_id' => 'required',
-		'status' => 'required',
-    ];
 
-    protected $perPage = 20;
+  static $rules = [
+    'nombre' => 'required',
+    'precio' => 'required',
+    'cantdias' => 'required',
+    'tiposervicio_id' => 'required',
+    'status' => 'required',
+  ];
 
-    /**
-     * Attributes that should be mass-assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['nombre','precio','cantdias','descripcion','tiposervicio_id','status'];
+  protected $perPage = 20;
+
+  /**
+   * Attributes that should be mass-assignable.
+   *
+   * @var array
+   */
+  protected $fillable = ['nombre', 'precio', 'cantdias', 'descripcion', 'tiposervicio_id', 'status'];
 
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function tiposervicio()
+  /**
+   * @return \Illuminate\Database\Eloquent\Relations\HasOne
+   */
+  public function tiposervicio()
+  {
+    return $this->hasOne('App\Models\Tiposervicio', 'id', 'tiposervicio_id');
+  }
+  public function horarioservicio()
     {
-        return $this->hasOne('App\Models\Tiposervicio', 'id', 'tiposervicio_id');
+        return $this->hasMany('App\Models\Horarioservicio', 'servicio_id', 'id');
     }
-    
 
+    public function suscripciones()
+    {
+        return $this->hasMany('App\Models\Suscripcione', 'servicio_id', 'id');
+    }
 }

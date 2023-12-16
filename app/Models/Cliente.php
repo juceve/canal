@@ -103,5 +103,8 @@ class Cliente extends Model
         return $this->hasOne('App\Models\Zona', 'id', 'zona_id');
     }
     
-
+    public function suscripciones()
+    {
+        return $this->hasMany('App\Models\Suscripcione', 'cliente_id', 'id');
+    }
 }
