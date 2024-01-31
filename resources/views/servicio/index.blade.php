@@ -55,6 +55,9 @@
                                                     <a class="btn btn-sm btn-outline-primary "
                                                         href="{{ route('servicios.show', $servicio->id) }}"
                                                         title="Info"><i class="fa fa-fw fa-eye"></i></a>
+                                                    <a class="btn btn-sm btn-outline-info "
+                                                        href="{{ route('servicios.horarios', $servicio->id) }}"
+                                                        title="Horarios"><i class="fa fa-fw fa-clock"></i></a>
                                                     <a class="btn btn-sm btn-outline-success"
                                                         href="{{ route('servicios.edit', $servicio->id) }}"
                                                         title="Editar"><i class="fa fa-fw fa-edit"></i></a>

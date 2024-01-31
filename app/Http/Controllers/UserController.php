@@ -9,6 +9,13 @@ use Spatie\Permission\Models\Role;
 class UserController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:users.index')->only('index');
+        $this->middleware('can:users.create')->only('create', 'store');
+        $this->middleware('can:users.edit')->only('edit', 'update');
+        $this->middleware('can:users.destroy')->only('destroy');
+    }
     public function index()
     {
         $users = User::all();
@@ -27,7 +34,11 @@ class UserController extends Controller
     {
         request()->validate(User::$rules);
 
-        $user = User::create($request->all());
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt('12345678'),
+        ])->assignRole('Operador');
 
         return redirect()->route('users.index')
             ->with('success', 'Usuario creado correctamente.');
@@ -49,7 +60,10 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        request()->validate(User::$rules);
+        request()->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id
+        ]);
 
         $user->update($request->all());
 
@@ -67,7 +81,8 @@ class UserController extends Controller
             ->with('success', 'Usuario modificado correctamente');
     }
 
-    public function profile(User $user){
+    public function profile(User $user)
+    {
         dd($user);
     }
 

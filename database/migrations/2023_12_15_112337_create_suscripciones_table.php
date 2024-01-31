@@ -16,8 +16,10 @@ return new class extends Migration
             $table->foreignId('cliente_id')->constrained();
             $table->foreignId('servicio_id')->constrained();
             $table->foreignId('vntventa_id')->constrained();
-            $table->string('inicio',10);
-            $table->string('final',10);
+            $table->foreignId('modalidadservicio_id')->constrained();
+            $table->string('inicio',10)->nullable();
+            $table->string('final',10)->nullable();
+            $table->integer('creditos');
             $table->foreignId('horarioservicio_id')->nullable()->constrained();
             $table->string('horario',5);
             $table->boolean('status')->default(true);

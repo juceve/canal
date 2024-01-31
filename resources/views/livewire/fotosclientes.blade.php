@@ -22,7 +22,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="text-secondary">{{$cliente->nombre}}</h4>
+                        <h4 class="text-secondary">{{ $cliente->nombre }}</h4>
                         <hr>
                         <h6>Imágenes Registradas</h6>
                         <div class="table-responsive">
@@ -31,6 +31,7 @@
                                     <tr>
                                         <th>No.</th>
                                         <th>Preview</th>
+                                        <th>Fecha</th>
                                         <th>Nombre</th>
                                         <th style="width: 10px"></th>
                                     </tr>
@@ -48,6 +49,9 @@
                                                 <a href="#{{ $imagen->id }}">
                                                     <img src="{{ Storage::url($imagen->url) }}" class="img-thumbnail">
                                                 </a>
+                                            </td>
+                                            <td>
+                                                {{ Str::substr($imagen->created_at, 0, 10) }}
                                             </td>
                                             <td>{{ $name[1] }}</td>
                                             <td>

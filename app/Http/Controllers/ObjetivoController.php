@@ -11,11 +11,13 @@ use Illuminate\Http\Request;
  */
 class ObjetivoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:objetivos.index')->only('index');
+        $this->middleware('can:objetivos.create')->only('create', 'store');
+        $this->middleware('can:objetivos.edit')->only('edit', 'update');
+        $this->middleware('can:objetivos.destroy')->only('destroy');
+    }
     public function index()
     {
         $objetivos = Objetivo::paginate();

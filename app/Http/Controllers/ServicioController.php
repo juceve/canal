@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Modalidadservicio;
 use App\Models\Servicio;
 use App\Models\Tiposervicio;
 use Illuminate\Http\Request;
@@ -12,11 +13,13 @@ use Illuminate\Http\Request;
  */
 class ServicioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:servicios.index')->only('index');
+        $this->middleware('can:servicios.create')->only('create', 'store');
+        $this->middleware('can:servicios.edit')->only('edit', 'update');
+        $this->middleware('can:servicios.destroy')->only('destroy');
+    }
     public function index()
     {
         $servicios = Servicio::all();
@@ -33,8 +36,9 @@ class ServicioController extends Controller
     public function create()
     {
         $servicio = new Servicio();
-        $tipos = Tiposervicio::all()->pluck('nombre','id');
-        return view('servicio.create', compact('servicio', 'tipos'));
+        $tipos = Tiposervicio::all()->pluck('nombre', 'id');
+        $modalidades = Modalidadservicio::all()->pluck('nombre', 'id');
+        return view('servicio.create', compact('servicio', 'tipos', 'modalidades'));
     }
 
     /**
@@ -75,8 +79,9 @@ class ServicioController extends Controller
     public function edit($id)
     {
         $servicio = Servicio::find($id);
-        $tipos = Tiposervicio::all()->pluck('nombre','id');
-        return view('servicio.edit', compact('servicio', 'tipos'));
+        $tipos = Tiposervicio::all()->pluck('nombre', 'id');
+        $modalidades = Modalidadservicio::all()->pluck('nombre', 'id');
+        return view('servicio.edit', compact('servicio', 'tipos', 'modalidades'));
     }
 
     /**

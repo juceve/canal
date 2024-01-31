@@ -11,11 +11,13 @@ use Illuminate\Http\Request;
  */
 class TipodocController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:tipodocs.index')->only('index');
+        $this->middleware('can:tipodocs.create')->only('create', 'store');
+        $this->middleware('can:tipodocs.edit')->only('edit', 'update');
+        $this->middleware('can:tipodocs.destroy')->only('destroy');
+    }
     public function index()
     {
         $tipodocs = Tipodoc::paginate();

@@ -57,3 +57,10 @@
         </div>
     </div>
 </div>
+@section('js')
+<script>
+    Livewire.on('impservicios',data=>{            
+        window.open('../../impresiones/reciboservicios.php?data='+data, "_blank");
+    })
+</script>
+@endsection

@@ -11,11 +11,13 @@ use Illuminate\Http\Request;
  */
 class ZonaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:zonas.index')->only('index');
+        $this->middleware('can:zonas.create')->only('create', 'store');
+        $this->middleware('can:zonas.edit')->only('edit', 'update');
+        $this->middleware('can:zonas.destroy')->only('destroy');
+    }
     public function index()
     {
         $zonas = Zona::paginate();

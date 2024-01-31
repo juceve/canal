@@ -27,7 +27,7 @@ class Servicio extends Model
   static $rules = [
     'nombre' => 'required',
     'precio' => 'required',
-    'cantdias' => 'required',
+    'creditos' => 'required',
     'tiposervicio_id' => 'required',
     'status' => 'required',
   ];
@@ -39,7 +39,7 @@ class Servicio extends Model
    *
    * @var array
    */
-  protected $fillable = ['nombre', 'precio', 'cantdias', 'descripcion', 'tiposervicio_id', 'status'];
+  protected $fillable = ['nombre', 'precio', 'creditos', 'descripcion', 'tiposervicio_id', 'modalidadservicio_id','status'];
 
 
   /**
@@ -58,4 +58,8 @@ class Servicio extends Model
     {
         return $this->hasMany('App\Models\Suscripcione', 'servicio_id', 'id');
     }
+    public function modalidadservicio()
+  {
+    return $this->hasOne('App\Models\Modalidadservicio', 'id', 'modalidadservicio_id');
+  }
 }

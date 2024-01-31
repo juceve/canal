@@ -21,11 +21,13 @@ use Intervention\Image\Facades\Image;
  */
 class ClienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:clientes.index')->only('index');
+        $this->middleware('can:clientes.create')->only('create', 'store');
+        $this->middleware('can:clientes.edit')->only('edit', 'update');
+        $this->middleware('can:clientes.destroy')->only('destroy');
+    }
     public function index()
     {
         $clientes = Cliente::all();
@@ -160,8 +162,8 @@ class ClienteController extends Controller
     public function show($id)
     {
         $cliente = Cliente::find($id);
-        $estadofisico = Datosfisico::where('cliente_id',$cliente->id)->orderBy('id','desc')->first();
-        return view('cliente.show', compact('cliente','estadofisico'));
+        $estadofisico = Datosfisico::where('cliente_id', $cliente->id)->orderBy('id', 'desc')->first();
+        return view('cliente.show', compact('cliente', 'estadofisico'));
     }
 
 
@@ -173,8 +175,8 @@ class ClienteController extends Controller
         $objetivos      = Objetivo::all();
         $generos        = Genero::all()->pluck('nombre', 'id');
         $contexturas    = Contextura::all()->pluck('nombre', 'id');
-        $estadofisico   = Datosfisico::where('cliente_id',$cliente->id)->orderBy('id','desc')->first();
-        return view('cliente.edit', compact('cliente', 'tipodocs', 'zonas', 'objetivos', 'generos', 'contexturas','estadofisico'));
+        $estadofisico   = Datosfisico::where('cliente_id', $cliente->id)->orderBy('id', 'desc')->first();
+        return view('cliente.edit', compact('cliente', 'tipodocs', 'zonas', 'objetivos', 'generos', 'contexturas', 'estadofisico'));
     }
 
 

@@ -36,8 +36,14 @@
                             </div>
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
-                                    <strong>Cant. Dias:</strong>
-                                    {{ $servicio->cantdias }}
+                                    <strong>Modalidad:</strong>
+                                    {{ $servicio->modalidadservicio->nombre }}
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <div class="form-group">
+                                    <strong>Cantidad:</strong>
+                                    {{ $servicio->creditos }}
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 mb-3">

@@ -4,8 +4,11 @@ namespace Database\Seeders;
 
 use App\Models\Contextura;
 use App\Models\Genero;
+use App\Models\Modalidadservicio;
+use App\Models\Modimpresion;
 use App\Models\Objetivo;
 use App\Models\Tipodoc;
+use App\Models\Tiposervicio;
 use App\Models\Vntestadopago;
 use App\Models\Vnttipopago;
 use App\Models\Zona;
@@ -121,6 +124,31 @@ class VariosSeeder extends Seeder
             'nombre' => 'GASTO ADMINISTRATIVO',
             'nombrecorto' => 'GA',
             'factor' => 0,
+        ]);
+
+        Tiposervicio::create([
+            'nombre' => 'Tipo Servicio 1',
+        ]);
+        Tiposervicio::create([
+            'nombre' => 'Tipo Servicio 2',
+        ]);
+        Tiposervicio::create([
+            'nombre' => 'Tipo Servicio 3',
+        ]);
+
+        Modalidadservicio::create([
+            'nombre' => 'Dias',
+            'descripcion' => 'Descripcion Dias'
+        ]);
+        Modalidadservicio::create([
+            'nombre' => 'Creditos',
+            'descripcion' => 'Descripcion Creditos'
+        ]);
+        Modimpresion::create([
+            'nombre' => 'ESTANDAR'
+        ]);
+        Modimpresion::create([
+            'nombre' => 'ESC-POS'
         ]);
     }
 }

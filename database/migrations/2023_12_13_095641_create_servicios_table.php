@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->float('precio');
-            $table->integer('cantdias');
+            $table->integer('creditos');
             $table->longText('descripcion')->nullable();
             $table->foreignId('tiposervicio_id')->constrained();
+            $table->foreignId('modalidadservicio_id')->constrained();
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

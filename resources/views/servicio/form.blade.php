@@ -20,19 +20,30 @@
                 </div>
             </div>
             <div class="col-12 col-md-6 mb-3">
+                <div class="form-group{{ $errors->has('modalidadservicio_id') ? ' has-error' : '' }}">
+                    {!! Form::label('modalidadservicio_id', 'Modo Servicio:') !!}
+                    {!! Form::select('modalidadservicio_id', $modalidades, $servicio->modalidadservicio_id, [
+                        'id' => 'modalidadservicio_id',
+                        'class' => 'form-select' . ($errors->has('modalidadservicio_id') ? ' is-invalid' : ''),
+                        'placeholder' => 'Seleccione un opción',
+                    ]) !!}
+                    <small class="text-danger">{{ $errors->first('modalidadservicio_id') }}</small>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <div class="form-group">
+                    {{ Form::label('Cantidad:') }}
+                    {{ Form::number('creditos', $servicio->creditos, ['class' => 'form-control' . ($errors->has('creditos') ? ' is-invalid' : ''), 'placeholder' => 'creditos']) }}
+                    {!! $errors->first('creditos', '<div class="invalid-feedback">:message</div>') !!}
+                </div>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
                 <div class="form-group">
                     {{ Form::label('Precio Bs.:') }}
                     {{ Form::number('precio', $servicio->precio, ['step' => '.01', 'class' => 'form-control' . ($errors->has('precio') ? ' is-invalid' : ''), 'placeholder' => 'Precio Bs.']) }}
                     {!! $errors->first('precio', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
-            </div>
-            <div class="col-12 col-md-6 mb-3">
-                <div class="form-group">
-                    {{ Form::label('Cant. Días:') }}
-                    {{ Form::number('cantdias', $servicio->cantdias, ['class' => 'form-control' . ($errors->has('cantdias') ? ' is-invalid' : ''), 'placeholder' => 'Cantdias']) }}
-                    {!! $errors->first('cantdias', '<div class="invalid-feedback">:message</div>') !!}
-                </div>
-            </div>
+            </div>            
             <div class="col-12 col-md-6 mb-3">
                 <div class="form-group">
                     {{ Form::label('Descripción:') }}
