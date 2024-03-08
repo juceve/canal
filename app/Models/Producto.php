@@ -23,11 +23,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Producto extends Model
 {
-    
+
     static $rules = [
-		'nombre' => 'required',
-		'precio' => 'required',
-		'categoria_id' => 'required',
+        'nombre' => 'required',
+        'precio' => 'required',
+        'categoria_id' => 'required',
     ];
 
     protected $perPage = 20;
@@ -37,7 +37,7 @@ class Producto extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre','descripcion','precio','categoria_id'];
+    protected $fillable = ['nombre', 'descripcion', 'precio', 'categoria_id'];
 
 
     /**
@@ -47,7 +47,7 @@ class Producto extends Model
     {
         return $this->hasOne('App\Models\Categoria', 'id', 'categoria_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -55,7 +55,7 @@ class Producto extends Model
     {
         return $this->hasMany('App\Models\CompraProducto', 'producto_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -63,6 +63,4 @@ class Producto extends Model
     {
         return $this->hasMany('App\Models\Stock', 'producto_id', 'id');
     }
-    
-
 }

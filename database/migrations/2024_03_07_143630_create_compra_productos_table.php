@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('compra_productos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('producto_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('compra_id')->constrained()->nullOnDelete();
+            $table->foreignId('compra_id')->nullable()->constrained()->nullOnDelete();
             $table->integer('cantidad');
             $table->decimal('precio', 10, 2);
             $table->timestamps();

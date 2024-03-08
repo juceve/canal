@@ -30,6 +30,7 @@ Productos
 
                                     <th>Nombre</th>
                                     <th>Categoria</th>
+                                    <th>Stock</th>
 
                                     <th></th>
                                 </tr>
@@ -41,6 +42,7 @@ Productos
 
                                     <td>{{ $producto->nombre }}</td>
                                     <td>{{ $producto->categoria?$producto->categoria->nombre:"NULL" }}</td>
+                                    <td>{{ $producto->stocks->first()->cantidad }}</td>
 
                                     <td align="right">
                                         <form action="{{ route('productos.destroy',$producto->id) }}" method="POST"

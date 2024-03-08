@@ -68,15 +68,15 @@ class VariosSeeder extends Seeder
             'nombre' => 'PASATIEMPO'
         ]);
 
-        Contextura::create([
-            'nombre' => 'Contextura 1',
-        ]);
-        Contextura::create([
-            'nombre' => 'Contextura 2',
-        ]);
-        Contextura::create([
-            'nombre' => 'Contextura 3',
-        ]);
+        // Contextura::create([
+        //     'nombre' => 'Ectomorfo',
+        // ]);
+        // Contextura::create([
+        //     'nombre' => 'Endomorfo',
+        // ]);
+        // Contextura::create([
+        //     'nombre' => 'Endomorfo',
+        // ]);
 
         Genero::create([
             'nombre' => 'Masculino',
@@ -126,15 +126,15 @@ class VariosSeeder extends Seeder
             'factor' => 0,
         ]);
 
-        Tiposervicio::create([
-            'nombre' => 'Tipo Servicio 1',
-        ]);
-        Tiposervicio::create([
-            'nombre' => 'Tipo Servicio 2',
-        ]);
-        Tiposervicio::create([
-            'nombre' => 'Tipo Servicio 3',
-        ]);
+        // Tiposervicio::create([
+        //     'nombre' => 'Tipo Servicio 1',
+        // ]);
+        // Tiposervicio::create([
+        //     'nombre' => 'Tipo Servicio 2',
+        // ]);
+        // Tiposervicio::create([
+        //     'nombre' => 'Tipo Servicio 3',
+        // ]);
 
         Modalidadservicio::create([
             'nombre' => 'Dias',
