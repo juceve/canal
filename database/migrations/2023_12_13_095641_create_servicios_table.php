@@ -17,8 +17,8 @@ return new class extends Migration
             $table->float('precio');
             $table->integer('creditos');
             $table->longText('descripcion')->nullable();
-            $table->foreignId('tiposervicio_id')->constrained();
-            $table->foreignId('modalidadservicio_id')->constrained();
+            $table->foreignId('tiposervicio_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('modalidadservicio_id')->nullable()->constrained()->nullOnDelete();
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

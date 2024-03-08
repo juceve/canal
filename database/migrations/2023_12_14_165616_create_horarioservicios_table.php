@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('horarioservicios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('servicio_id')->constrained();
-            $table->string('hora',5);
+            $table->foreignId('servicio_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('hora', 5);
             $table->timestamps();
         });
     }

@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('vntventas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->date('fecha');
             $table->string('cliente')->nullable();
-            $table->foreignId('cliente_id')->nullable()->constrained();            
+            $table->foreignId('cliente_id')->nullable()->constrained()->nullOnDelete();
             $table->float('importe');
             $table->string('observaciones')->nullable();
-            $table->foreignId('vntestadopago_id')->constrained();
+            $table->foreignId('vntestadopago_id')->nullable()->constrained()->nullOnDelete();
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

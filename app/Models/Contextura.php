@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $created_at
  * @property $updated_at
  *
- * @property Datossalud[] $datossaluds
+ * @property Datosfisico[] $datosfisicos
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -36,9 +36,9 @@ class Contextura extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function datossaluds()
+    public function datosfisicos()
     {
-        return $this->hasMany('App\Models\Datossalud', 'contextura_id', 'id');
+        return $this->hasMany('App\Models\Datosfisico', 'contextura_id', 'id');
     }
     
 

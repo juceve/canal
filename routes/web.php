@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CompraController;
+use App\Http\Controllers\ContexturaController;
 use App\Http\Controllers\ImpresionController;
 use App\Http\Controllers\ObjetivoController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\SuscripcioneController;
@@ -30,9 +34,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Auth::routes();
 
@@ -58,6 +60,14 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('admin/tiposervicios', TiposervicioController::class)->names('tiposervicios');
     Route::resource('admin/servicios', ServicioController::class)->names('servicios');
     Route::resource('admin/suscripciones', SuscripcioneController::class)->names('suscripciones');
+    Route::resource('admin/contexturas', ContexturaController::class)->names('contexturas');
+
+    Route::resource('admin/categorias', CategoriaController::class)->names('categorias');
+    Route::resource('admin/productos', ProductoController::class)->names('productos');
+    Route::resource('admin/compras', CompraController::class)->names('compras');
+    Route::post('admin/compras/{id}/anular', [CompraController::class, 'anular'])->name('compras.anular');
+
+
 
     Route::get('pruebas', Pruebas::class)->name('pruebas');
 });

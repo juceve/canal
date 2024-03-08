@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('vntpagos', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('fechahora');            
-            $table->foreignId('vntventa_id')->constrained();
-            $table->foreignId('vnttipopago_id')->constrained();
+            $table->dateTime('fechahora');
+            $table->foreignId('vntventa_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('vnttipopago_id')->nullable()->constrained()->nullOnDelete();
             $table->string('tipopago')->nullable();
             $table->float('monto');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('datosfisicos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cliente_id')->constrained();
-            $table->foreignId('contextura_id')->constrained();
+            $table->foreignId('cliente_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('contextura_id')->nullable()->constrained()->nullOnDelete();
             $table->float('peso');
             $table->float('altura');
             $table->float('imc');

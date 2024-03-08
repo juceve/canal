@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('url');
             $table->string('extension')->nullable();
-            $table->foreignId('cliente_id')->constrained();
+            $table->foreignId('cliente_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
     }

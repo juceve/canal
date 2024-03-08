@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('suscripciones', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cliente_id')->constrained();
-            $table->foreignId('servicio_id')->constrained();
-            $table->foreignId('vntventa_id')->constrained();
-            $table->foreignId('modalidadservicio_id')->constrained();
-            $table->string('inicio',10)->nullable();
-            $table->string('final',10)->nullable();
+            $table->foreignId('cliente_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('servicio_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('vntventa_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('modalidadservicio_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('inicio', 10)->nullable();
+            $table->string('final', 10)->nullable();
             $table->integer('creditos');
-            $table->foreignId('horarioservicio_id')->nullable()->constrained();
-            $table->string('horario',5);
+            $table->foreignId('horarioservicio_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('horario', 5);
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

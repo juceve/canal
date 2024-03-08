@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreignId('modimpresion_id')->default(1)->constrained();
+            $table->foreignId('modimpresion_id')->default(1)->nullable()->constrained()->nullOnDelete();
             $table->string('avatar')->default('images/avatar.jpg')->nullable();
             $table->boolean('status')->default(true);
 

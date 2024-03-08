@@ -26,8 +26,6 @@ class Datosfisico extends Model
 {
     
     static $rules = [
-		'cliente_id' => 'required',
-		'contextura_id' => 'required',
 		'peso' => 'required',
 		'altura' => 'required',
 		'imc' => 'required',

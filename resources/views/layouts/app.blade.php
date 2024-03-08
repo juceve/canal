@@ -7,14 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Responsive HTML Admin Dashboard Template based on Bootstrap 5">
-    {{-- <meta name="author" content="NobleUI">
+    {{--
+    <meta name="author" content="NobleUI">
     <meta name="keywords"
-        content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web"> --}}
+        content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+    --}}
 
     <title>@yield('template_title') | {{ config('app.name') }}</title>
 
     <!-- Fonts -->
-    {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    {{--
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> --}}
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <!-- End fonts -->
@@ -26,6 +29,9 @@
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/select2/select2.min.css')}}">
+    <link rel="stylesheet"
+        href="{{ asset('admin/assets/vendors/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <!-- End plugin css for this page -->
 
     <!-- inject:css -->
@@ -53,9 +59,9 @@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar">
             <div class="sidebar-header">
-                <a href="#" class="sidebar-brand">
+                <a href="#" class="sidebar-brand" style="font-size: 20px;">
                     {{-- <img src="{{ asset('admin/assets/images/favicon.png') }}" style="width: 25px"> --}}
-                    <small>SOFT</small> <span>{{ config('app.name') }}</span>
+                    <small>CROSS</small> <span>{{ config('app.name') }}</span>
                 </a>
                 <div class="sidebar-toggler not-active">
                     <span style="background-color: #000865"></span>
@@ -80,7 +86,7 @@
                     <div>
                         <h4 class="mb-3 mb-md-0">Welcome to Dashboard</h4>
                     </div> --}}
-                {{-- <div class="d-flex align-items-center flex-wrap text-nowrap">
+                    {{-- <div class="d-flex align-items-center flex-wrap text-nowrap">
                         <div class="input-group date datepicker wd-200 me-2 mb-2 mb-md-0" id="dashboardDate">
                             <span class="input-group-text input-group-addon bg-transparent border-primary"><i
                                     data-feather="calendar" class=" text-primary"></i></span>
@@ -95,7 +101,8 @@
                             Download Report
                         </button>
                     </div> --}}
-                {{-- </div> --}}
+                    {{--
+                </div> --}}
 
                 {{-- <div class="row">
                     <div class="col-12 col-xl-12 stretch-card">
@@ -140,6 +147,7 @@
     <script src="{{ asset('admin/assets/vendors/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('admin/assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('admin/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendors/select2/select2.min.js')}}"></script>
     <!-- End plugin js for this page -->
 
     <!-- inject:js -->
@@ -199,6 +207,25 @@
                 }
             });
         })
+        
+        $('.anular').submit(function(e) {
+            Swal.fire({
+                title: "ANULAR REGISTRO",
+                text: "¿Está seguro de realizar esta operación?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Si, continuar",
+                cancelButtonText: "No, cancelar"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            });
+        })
+
+        
 
         function preview(elem, output = '') {
             Array.from(elem.files).map((file) => {
@@ -259,13 +286,13 @@
 
 
     @if ($message = Session::get('success'))
-        <script>
-            Swal.fire({
+    <script>
+        Swal.fire({
                 title: "Excelente!",
                 text: "{{ $message }}",
                 icon: "success"
             });
-        </script>
+    </script>
     @endif
 
 </body>

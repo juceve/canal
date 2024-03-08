@@ -44,6 +44,16 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'tipodocs.edit', 'grupo' => 'TIPO DOCS', 'descripcion' => 'Editar'])->assignRole([$role]);
         Permission::create(['name' => 'tipodocs.destroy', 'grupo' => 'TIPO DOCS', 'descripcion' => 'Eliminar'])->assignRole([$role]);
 
+        Permission::create(['name' => 'tiposervicios.index', 'grupo' => 'TIPO SERVICIOS', 'descripcion' => 'Ver Listado'])->assignRole([$role]);
+        Permission::create(['name' => 'tiposervicios.create', 'grupo' => 'TIPO SERVICIOS', 'descripcion' => 'Crear'])->assignRole([$role]);
+        Permission::create(['name' => 'tiposervicios.edit', 'grupo' => 'TIPO SERVICIOS', 'descripcion' => 'Editar'])->assignRole([$role]);
+        Permission::create(['name' => 'tiposervicios.destroy', 'grupo' => 'TIPO SERVICIOS', 'descripcion' => 'Eliminar'])->assignRole([$role]);
+
+        Permission::create(['name' => 'contexturas.index', 'grupo' => 'CONTEXTURAS', 'descripcion' => 'Ver Listado'])->assignRole([$role]);
+        Permission::create(['name' => 'contexturas.create', 'grupo' => 'CONTEXTURAS', 'descripcion' => 'Crear'])->assignRole([$role]);
+        Permission::create(['name' => 'contexturas.edit', 'grupo' => 'CONTEXTURAS', 'descripcion' => 'Editar'])->assignRole([$role]);
+        Permission::create(['name' => 'contexturas.destroy', 'grupo' => 'CONTEXTURAS', 'descripcion' => 'Eliminar'])->assignRole([$role]);
+
         Permission::create(['name' => 'objetivos.index', 'grupo' => 'OBJETIVOS', 'descripcion' => 'Ver Listado'])->assignRole([$role]);
         Permission::create(['name' => 'objetivos.create', 'grupo' => 'OBJETIVOS', 'descripcion' => 'Crear'])->assignRole([$role]);
         Permission::create(['name' => 'objetivos.edit', 'grupo' => 'OBJETIVOS', 'descripcion' => 'Editar'])->assignRole([$role]);
@@ -53,5 +63,20 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.roles.create',  'grupo' => 'ROLES', 'descripcion' => 'Crear'])->assignRole([$role]);
         Permission::create(['name' => 'admin.roles.edit',  'grupo' => 'ROLES', 'descripcion' => 'Editar'])->assignRole([$role]);
         Permission::create(['name' => 'admin.roles.destroy',  'grupo' => 'ROLES', 'descripcion' => 'Eliminar'])->assignRole([$role]);
+
+        Permission::create(['name' => 'categorias.index',  'grupo' => 'CATEGORIAS PROD.', 'descripcion' => 'Ver listado'])->assignRole([$role]);
+        Permission::create(['name' => 'categorias.create',  'grupo' => 'CATEGORIAS PROD.', 'descripcion' => 'Crear'])->assignRole([$role]);
+        Permission::create(['name' => 'categorias.edit',  'grupo' => 'CATEGORIAS PROD.', 'descripcion' => 'Editar'])->assignRole([$role]);
+        Permission::create(['name' => 'categorias.destroy',  'grupo' => 'CATEGORIAS PROD.', 'descripcion' => 'Eliminar'])->assignRole([$role]);
+
+        Permission::create(['name' => 'productos.index',  'grupo' => 'PRODUCTOS', 'descripcion' => 'Ver listado'])->assignRole([$role]);
+        Permission::create(['name' => 'productos.create',  'grupo' => 'PRODUCTOS', 'descripcion' => 'Crear'])->assignRole([$role]);
+        Permission::create(['name' => 'productos.edit',  'grupo' => 'PRODUCTOS', 'descripcion' => 'Editar'])->assignRole([$role]);
+        Permission::create(['name' => 'productos.destroy',  'grupo' => 'PRODUCTOS', 'descripcion' => 'Eliminar'])->assignRole([$role]);
+
+        Permission::create(['name' => 'compras.index',  'grupo' => 'COMPRAS', 'descripcion' => 'Ver listado'])->assignRole([$role]);
+        Permission::create(['name' => 'compras.create',  'grupo' => 'COMPRAS', 'descripcion' => 'Crear'])->assignRole([$role]);
+        Permission::create(['name' => 'compras.edit',  'grupo' => 'COMPRAS', 'descripcion' => 'Editar'])->assignRole([$role]);
+        Permission::create(['name' => 'compras.destroy',  'grupo' => 'COMPRAS', 'descripcion' => 'Eliminar'])->assignRole([$role]);
     }
 }

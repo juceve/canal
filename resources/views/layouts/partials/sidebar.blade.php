@@ -38,7 +38,14 @@
                 </ul>
             </div>
         </li>
-
+        @can('compras.index')
+        <li class="nav-item">
+            <a href="/admin/compras" class="nav-link">
+                <i class="link-icon" data-feather="shopping-bag"></i>
+                <span class="link-title">Compras</span>
+            </a>
+        </li>
+        @endcan
         {{-- <li class="nav-item">
             <a href="{{route('clientes.index')}}" class="nav-link">
                 <i class="link-icon" data-feather="database"></i>
@@ -58,23 +65,23 @@
                 <ul class="nav sub-menu">
 
                     @can('clientes.index')
-                        <li class="nav-item">
-                            <a href="{{ route('clientes.index') }}" class="nav-link">Clientes</a>
-                        </li>
+                    <li class="nav-item">
+                        <a href="{{ route('clientes.index') }}" class="nav-link">Clientes</a>
+                    </li>
                     @endcan
 
 
                     @can('servicios.index')
-                        <li class="nav-item">
-                            <a href="{{ route('servicios.index') }}" class="nav-link">Servicios</a>
-                        </li>
+                    <li class="nav-item">
+                        <a href="{{ route('servicios.index') }}" class="nav-link">Servicios</a>
+                    </li>
                     @endcan
 
 
                     @can('users.index')
-                        <li class="nav-item">
-                            <a href="{{ route('users.index') }}" class="nav-link">Usuarios</a>
-                        </li>
+                    <li class="nav-item">
+                        <a href="{{ route('users.index') }}" class="nav-link">Usuarios</a>
+                    </li>
                     @endcan
 
 
@@ -93,27 +100,52 @@
             </a>
             <div class="collapse" id="paramentros">
                 <ul class="nav sub-menu">
+                    <li class="nav-item nav-category">FUNCIONAL</li>
 
-                    @can('zonas.index')
-                        <li class="nav-item">
-                            <a href="{{ route('zonas.index') }}" class="nav-link">Zonas</a>
-                        </li>
-                    @endcan
-                    @can('tipodocs.index')
-                        <li class="nav-item">
-                            <a href="{{ route('tipodocs.index') }}" class="nav-link">Tipo Documentos</a>
-                        </li>
+                    @can('contexturas.index')
+                    <li class="nav-item">
+                        <a href="{{ route('contexturas.index') }}" class="nav-link">Contexturas fisicas</a>
+                    </li>
                     @endcan
                     @can('objetivos.index')
-                        <li class="nav-item">
-                            <a href="{{ route('objetivos.index') }}" class="nav-link">Objetivos Clientes</a>
-                        </li>
+                    <li class="nav-item">
+                        <a href="{{ route('objetivos.index') }}" class="nav-link">Objetivos Clientes</a>
+                    </li>
                     @endcan
 
+
+                    <li class="nav-item nav-category">VENTAS</li>
+                    @can('tiposervicios.index')
+                    <li class="nav-item">
+                        <a href="{{ route('tiposervicios.index') }}" class="nav-link">Tipo Servicios</a>
+                    </li>
+                    @endcan
+                    @can('categorias.index')
+                    <li class="nav-item">
+                        <a href="{{ route('categorias.index') }}" class="nav-link">Categorias Prod.</a>
+                    </li>
+                    @endcan
+                    @can('productos.index')
+                    <li class="nav-item">
+                        <a href="{{ route('productos.index') }}" class="nav-link">Productos</a>
+                    </li>
+                    @endcan
+
+                    <li class="nav-item nav-category">SISTEMA</li>
                     @can('admin.roles.index')
-                        <li class="nav-item">
-                            <a href="{{ route('admin.roles.index') }}" class="nav-link">Roles y Permisos</a>
-                        </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.roles.index') }}" class="nav-link">Roles y Permisos</a>
+                    </li>
+                    @endcan
+                    @can('tipodocs.index')
+                    <li class="nav-item">
+                        <a href="{{ route('tipodocs.index') }}" class="nav-link">Tipo Documentos</a>
+                    </li>
+                    @endcan
+                    @can('zonas.index')
+                    <li class="nav-item">
+                        <a href="{{ route('zonas.index') }}" class="nav-link">Zonas</a>
+                    </li>
                     @endcan
                 </ul>
             </div>

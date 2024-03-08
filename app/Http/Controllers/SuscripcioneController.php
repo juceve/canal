@@ -48,7 +48,7 @@ class SuscripcioneController extends Controller
         $suscripcione = Suscripcione::create($request->all());
 
         return redirect()->route('suscripciones.index')
-            ->with('success', 'Suscripcione created successfully.');
+            ->with('success', 'Suscripcione creada correctamente.');
     }
 
     /**
@@ -91,7 +91,7 @@ class SuscripcioneController extends Controller
         $suscripcione->update($request->all());
 
         return redirect()->route('suscripciones.index')
-            ->with('success', 'Suscripcione updated successfully');
+            ->with('success', 'Suscripcione actualizada correctamente');
     }
 
     /**
@@ -101,9 +101,11 @@ class SuscripcioneController extends Controller
      */
     public function destroy($id)
     {
-        $suscripcione = Suscripcione::find($id)->delete();
+        $suscripcione = Suscripcione::find($id);
+        $suscripcione->status = 0;
+        $suscripcione->save();
 
         return redirect()->route('suscripciones.index')
-            ->with('success', 'Suscripcione deleted successfully');
+            ->with('success', 'Suscripcione anulada correctamente');
     }
 }
