@@ -17,7 +17,8 @@ class RegistroCompra extends Component
         $producto_id = "",
         $cantidad = "",
         $precio = "",
-        $arrProductos = [];
+        $arrProductos = [],
+        $total = 0;
 
     public function mount()
     {
@@ -45,6 +46,7 @@ class RegistroCompra extends Component
         $fila = array(
             $this->producto_id, $producto->nombre, $this->cantidad, $this->precio
         );
+        $this->total += $this->precio;
         $this->arrProductos[] = $fila;
         $this->reset([
             'producto_id',
@@ -56,6 +58,7 @@ class RegistroCompra extends Component
 
     public function eliminarItem($id)
     {
+        $this->total -= $this->arrProductos[$id][3];
         unset($this->arrProductos[$id]);
         $this->arrProductos = array_values($this->arrProductos);
     }
@@ -77,6 +80,7 @@ class RegistroCompra extends Component
                     $compraProducto = CompraProducto::create([
                         'producto_id' => $producto[0],
                         'compra_id' => $compra->id,
+                        'nombreproducto' => $producto[1],
                         'cantidad' => $producto[2],
                         'precio' => $producto[3],
                     ]);
@@ -87,7 +91,7 @@ class RegistroCompra extends Component
                 }
 
                 DB::commit();
-                $this->reset(['arrProductos']);
+                $this->reset(['arrProductos', 'total', 'fecha']);
 
                 $this->emit('successOK', 'Compra registrada correctamente.');
                 $this->fecha = date('Y-m-d');

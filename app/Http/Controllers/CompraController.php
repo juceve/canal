@@ -20,10 +20,10 @@ class CompraController extends Controller
      */
     public function index()
     {
-        $compras = Compra::paginate();
+        $compras = Compra::all();
 
         return view('compra.index', compact('compras'))
-            ->with('i', (request()->input('page', 1) - 1) * $compras->perPage());
+            ->with('i', 0);
     }
 
     /**

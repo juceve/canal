@@ -61,19 +61,27 @@
                             <td></td>
                         </tr>
                     </thead>
-                    @foreach ($arrProductos as $item)
-                    <tr>
-                        <td align="center">{{$i++}}</td>
-                        <td>{{$item[1]}}</td>
-                        <td align="center">{{$item[2]}}</td>
-                        <td align="right">{{number_format($item[3],2,'.')}}</td>
-                        <td align="right">
-                            <button class="btn btn-outline-danger btn-sm" title="Eliminar"
-                                wire:click='eliminarItem({{$i-2}})'><i class="fas fa-trash"></i></button>
-                        </td>
-                    </tr>
-                    @endforeach
-
+                    <tbody>
+                        @foreach ($arrProductos as $item)
+                        <tr>
+                            <td align="center">{{$i++}}</td>
+                            <td>{{$item[1]}}</td>
+                            <td align="center">{{$item[2]}}</td>
+                            <td align="right">{{number_format($item[3],2,'.')}}</td>
+                            <td align="right">
+                                <button class="btn btn-outline-danger btn-sm" title="Eliminar"
+                                    wire:click='eliminarItem({{$i-2}})'><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr class="table-info">
+                            <td colspan="3" align="right"><strong>TOTAL Bs.</strong></td>
+                            <td align="right"><strong>{{number_format($total,2,'.')}}</strong></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
             <div class="form-group mb-3">

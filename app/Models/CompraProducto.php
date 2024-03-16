@@ -22,12 +22,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CompraProducto extends Model
 {
-    
+
     static $rules = [
-		'producto_id' => 'required',
-		'compra_id' => 'required',
-		'cantidad' => 'required',
-		'precio' => 'required',
+        'producto_id' => 'required',
+        'compra_id' => 'required',
+        'cantidad' => 'required',
+        'precio' => 'required',
     ];
 
     protected $perPage = 20;
@@ -37,7 +37,7 @@ class CompraProducto extends Model
      *
      * @var array
      */
-    protected $fillable = ['producto_id','compra_id','cantidad','precio'];
+    protected $fillable = ['producto_id', 'compra_id', 'nombreproducto', 'cantidad', 'precio'];
 
 
     /**
@@ -47,7 +47,7 @@ class CompraProducto extends Model
     {
         return $this->hasOne('App\Models\Compra', 'id', 'compra_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -55,6 +55,4 @@ class CompraProducto extends Model
     {
         return $this->hasOne('App\Models\Producto', 'id', 'producto_id');
     }
-    
-
 }

@@ -33,7 +33,13 @@
             <div class="collapse" id="ventas">
                 <ul class="nav sub-menu">
                     <li class="nav-item">
-                        <a href="{{ route('ventas.suscli') }}" class="nav-link">Servicios</a>
+                        <a href="{{ route('pos') }}" class="nav-link">Punto de Venta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('ventas.suscripciones') }}" class="nav-link">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('vntventas.index') }}" class="nav-link">Listado</a>
                     </li>
                 </ul>
             </div>

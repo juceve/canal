@@ -2,6 +2,12 @@
     <div class="box-body">
 
         <div class="form-group mb-3">
+            {{ Form::label('Cod. Barras') }}
+            {{ Form::text('codbarras', $producto->codbarras, ['class' => 'form-control' . ($errors->has('codbarras') ? '
+            is-invalid' : ''), 'placeholder' => 'Cod. Barras']) }}
+            {!! $errors->first('codbarras', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group mb-3">
             {{ Form::label('nombre') }}
             {{ Form::text('nombre', $producto->nombre, ['class' => 'form-control' . ($errors->has('nombre') ? '
             is-invalid' : ''), 'placeholder' => 'Nombre']) }}

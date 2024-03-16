@@ -1,0 +1,135 @@
+.search-icon {
+    left: 15px;
+}
+
+.eye-icon {
+    right: 15px;
+}
+
+
+.input-hidden {
+    display: none;
+}
+
+.input-hidden {
+    display: none;
+}
+
+.cassette-buttons {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    /* max-width: 600px; */
+    margin: 20px;
+    flex-wrap: wrap;
+    /* Asegura que los botones se ajusten al tamaño del contenedor */
+}
+
+.cassette-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6571ff;
+    color: #fff;
+    padding: 0px;
+    /* width: 130px; */
+    /* Ancho fijo para todos los botones */
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s all ease;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+.cassette-btn:hover,
+.cassette-btn:focus {
+    background-color: #555;
+}
+
+.input-hidden:checked+.cassette-btn {
+    background-color: #777;
+    color: #fff;
+}
+
+.tipos-keypad {
+    display: grid;
+
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    /* Espacio entre botones */
+    width: 100%;
+    /* Ajusta el ancho máximo del teclado */
+}
+
+.numeric-keypad {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    /* Espacio entre botones */
+    width: 200px;
+    /* Ajusta el ancho máximo del teclado */
+}
+
+.keypad-button {
+    padding: 15px;
+    /* Espaciado interno para hacer los botones más grandes */
+    font-size: 15px;
+    /* Tamaño de la fuente para los números */
+    background-color: #f2f2f2;
+    /* Color de fondo de los botones */
+    border: none;
+    /* Sin bordes */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    cursor: pointer;
+    /* Cambiar el cursor a tipo puntero */
+}
+
+.keypad-button:hover {
+    background-color: #ddd;
+    /* Color cuando se pasa el mouse sobre el botón */
+}
+
+.keypad-button:active {
+    background-color: #ccc;
+    /* Color cuando se hace clic en el botón */
+}
+
+.special {
+    grid-column: span 3;
+    /* Hacer que los botones especiales ocupen toda la fila */
+    background-color: #41516c;
+
+    /* Color diferenciado para botones especiales */
+    color: white;
+    /* Color de texto para botones especiales */
+    padding: 10px;
+    /* Espaciado interno para hacer los botones más grandes */
+    font-size: 15px;
+    /* Tamaño de la fuente para los números */
+
+    /* Color de fondo de los botones */
+    border: none;
+    /* Sin bordes */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    cursor: pointer;
+}
+
+.special:hover {
+    background-color: #7987a1;
+
+}
+
+
+.specialEnter {
+    grid-column: span 1;
+    grid-row: span 3;
+    /* Hacer que los botones especiales ocupen toda la fila */
+    background-color: #4CAF50;
+    /* Color diferenciado para botones especiales */
+    color: white;
+    /* Color de texto para botones especiales */
+}

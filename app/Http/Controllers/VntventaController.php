@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vntpago;
 use App\Models\Vntventa;
 use Illuminate\Http\Request;
 
@@ -18,10 +19,7 @@ class VntventaController extends Controller
      */
     public function index()
     {
-        $vntventas = Vntventa::paginate();
-
-        return view('vntventa.index', compact('vntventas'))
-            ->with('i', (request()->input('page', 1) - 1) * $vntventas->perPage());
+        return view('vntventa.index');
     }
 
     /**
@@ -84,14 +82,25 @@ class VntventaController extends Controller
      * @param  Vntventa $vntventa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vntventa $vntventa)
+    public function update(Request $request, $id)
     {
-        request()->validate(Vntventa::$rules);
+        // request()->validate(Vntventa::$rules);
+        $venta = Vntventa::find($id);
+        $venta->cliente = $request->cliente;
+        $venta->observaciones = $request->observaciones;
+        $venta->status = $request->status;
+        $venta->save();
 
-        $vntventa->update($request->all());
+        $pago = Vntpago::where('vntventa_id', $venta->id)->first();
+        if ($pago) {
+            $pago->status = $venta->status;
+            $pago->save();
+        }
+
+
 
         return redirect()->route('vntventas.index')
-            ->with('success', 'Vntventa updated successfully');
+            ->with('success', 'Venta editada correctamente');
     }
 
     /**

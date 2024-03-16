@@ -46,9 +46,10 @@
 
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}" />
     <link rel="stylesheet" href="{{ asset('plugins/light-box/lightbox.css') }}">
-    <style>
-
-    </style>
+    <link rel="stylesheet" href="{{asset('plugins/alertify/alertify.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/alertify/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/alertify/default.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/alertify/semantic.min.css')}}">
     @yield('css')
     @livewireStyles
 </head>
@@ -82,44 +83,7 @@
 
             <div class="page-content">
                 @yield('content')
-                {{-- <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
-                    <div>
-                        <h4 class="mb-3 mb-md-0">Welcome to Dashboard</h4>
-                    </div> --}}
-                    {{-- <div class="d-flex align-items-center flex-wrap text-nowrap">
-                        <div class="input-group date datepicker wd-200 me-2 mb-2 mb-md-0" id="dashboardDate">
-                            <span class="input-group-text input-group-addon bg-transparent border-primary"><i
-                                    data-feather="calendar" class=" text-primary"></i></span>
-                            <input type="text" class="form-control border-primary bg-transparent">
-                        </div>
-                        <button type="button" class="btn btn-outline-primary btn-icon-text me-2 mb-2 mb-md-0">
-                            <i class="btn-icon-prepend" data-feather="printer"></i>
-                            Print
-                        </button>
-                        <button type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
-                            <i class="btn-icon-prepend" data-feather="download-cloud"></i>
-                            Download Report
-                        </button>
-                    </div> --}}
-                    {{--
-                </div> --}}
 
-                {{-- <div class="row">
-                    <div class="col-12 col-xl-12 stretch-card">
-                        <div class="row flex-grow-1">
-
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-baseline">
-                                        BIENVENIDO
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div> <!-- row --> --}}
             </div>
 
             <!-- partial:partials/_footer.html -->
@@ -160,6 +124,11 @@
     <script src="{{ asset('admin/assets/js/dashboard-light.js') }}"></script>
     <script src="{{ asset('admin/assets/js/datepicker.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- Alertify --}}
+    <script src="{{asset('plugins/alertify/alertify.min.js')}}"></script>
+    @livewireScripts
+
     <!-- End custom js for this page -->
 
     <script>
@@ -169,27 +138,14 @@
                     url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
                 },
             });
-        })
-        $(document).ready(() => {
-            $('.dataTableLite').dataTable({
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
-                },
-                "paging": true,
-                "ordering": false,
-                "info": false
-            });
-        })
-        $(document).ready(() => {
             $('.dataTableD').dataTable({
-                language: {
+                order: [[0, 'desc']],
+                language: {                    
                     url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
                 },
-                order: [
-                    [0, 'desc']
-                ]
             });
         })
+
 
         $('.delete').submit(function(e) {
             Swal.fire({
@@ -235,9 +191,28 @@
             elem.nextElementSibling.innerHTML = output
         }
     </script>
-    @livewireScripts
+
 
     <script>
+        Livewire.on('alertSuccess',msg=>{        
+            alertify.success(msg);
+        })
+        Livewire.on('alertError',msg=>{        
+            alertify.error(msg);
+        })
+        Livewire.on('alertWarning',msg=>{        
+            alertify.warning(msg);
+        })
+        
+        Livewire.on('dataTableD',()=>{
+            $('.dataTableD').dataTable({
+                order: [[0, 'desc']],
+                language: {                    
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+                },
+            });
+        })
+
         Livewire.on('successL', msg => {
             const Toast = Swal.mixin({
                 toast: true,

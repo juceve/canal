@@ -146,7 +146,7 @@ class Modalpago extends Component
 
             $this->emit('impservicios', $data);
 
-            return redirect()->route('ventas.suscli')->with('success', 'Venta realizada con exito!');
+            return redirect()->route('ventas.suscripciones')->with('success', 'Venta realizada con exito!');
         } catch (\Throwable $th) {
             DB::rollBack();
             $this->emit('errorOK', $th->getMessage());

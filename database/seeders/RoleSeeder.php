@@ -78,5 +78,10 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'compras.create',  'grupo' => 'COMPRAS', 'descripcion' => 'Crear'])->assignRole([$role]);
         Permission::create(['name' => 'compras.edit',  'grupo' => 'COMPRAS', 'descripcion' => 'Editar'])->assignRole([$role]);
         Permission::create(['name' => 'compras.destroy',  'grupo' => 'COMPRAS', 'descripcion' => 'Eliminar'])->assignRole([$role]);
+
+        Permission::create(['name' => 'pos.index',  'grupo' => 'PUNTO DE VENTA', 'descripcion' => 'Ver listado'])->assignRole([$role]);
+        Permission::create(['name' => 'pos.create',  'grupo' => 'PUNTO DE VENTA', 'descripcion' => 'Crear'])->assignRole([$role]);
+        Permission::create(['name' => 'pos.edit',  'grupo' => 'PUNTO DE VENTA', 'descripcion' => 'Editar'])->assignRole([$role]);
+        Permission::create(['name' => 'pos.destroy',  'grupo' => 'PUNTO DE VENTA', 'descripcion' => 'Eliminar'])->assignRole([$role]);
     }
 }

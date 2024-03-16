@@ -21,31 +21,29 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Vnttipopago extends Model
 {
-    
-    static $rules = [
-		'nombre' => 'required',
-		'nombrecorto' => 'required',
-		'factor' => 'required',
-		'status' => 'required',
-    ];
 
-    protected $perPage = 20;
+  static $rules = [
+    'nombre' => 'required',
+    'nombrecorto' => 'required',
+    'factor' => 'required',
+    'status' => 'required',
+  ];
 
-    /**
-     * Attributes that should be mass-assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['nombre','nombrecorto','factor','status'];
+  protected $perPage = 20;
+
+  /**
+   * Attributes that should be mass-assignable.
+   *
+   * @var array
+   */
+  protected $fillable = ['nombre', 'nombrecorto', 'icon', 'factor', 'status'];
 
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function vntpagos()
-    {
-        return $this->hasMany('App\Models\Vntpago', 'vnttipopago_id', 'id');
-    }
-    
-
+  /**
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
+  public function vntpagos()
+  {
+    return $this->hasMany('App\Models\Vntpago', 'vnttipopago_id', 'id');
+  }
 }

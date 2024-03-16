@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('producto_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('compra_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('nombreproducto')->nullable();
             $table->integer('cantidad');
             $table->decimal('precio', 10, 2);
             $table->timestamps();

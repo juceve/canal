@@ -18,28 +18,30 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Categoria extends Model
 {
-    
-    static $rules = [
-		'nombre' => 'required',
-    ];
 
-    protected $perPage = 20;
+  static $rules = [
+    'nombre' => 'required',
+  ];
 
-    /**
-     * Attributes that should be mass-assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['nombre'];
+  protected $perPage = 20;
+
+  /**
+   * Attributes that should be mass-assignable.
+   *
+   * @var array
+   */
+  protected $fillable = ['nombre'];
 
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function productos()
-    {
-        return $this->hasMany('App\Models\Producto', 'categoria_id', 'id');
-    }
-    
-
+  /**
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
+  public function productos()
+  {
+    return $this->hasMany('App\Models\Producto', 'categoria_id', 'id');
+  }
+  public function vwproductos()
+  {
+    return $this->hasMany('App\Models\Vw_producto', 'categoria_id', 'id');
+  }
 }

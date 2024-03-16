@@ -52,26 +52,36 @@ Info Compra
                     <table class="table table-bordered">
                         <thead>
                             <tr class="table-info">
-                                <th class="text-center">Nro</th>
+                                <th class="text-center">ID PROD.</th>
                                 <th>PRODUCTO</th>
                                 <th class="text-center">CANTIDAD</th>
                                 <th class="text-end">PRECIO Bs.</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                            $total =0;
+                            @endphp
                             @forelse ($compra->compraProductos as $item)
                             <tr>
-                                <td class="text-center">{{$i++}}</td>
-                                <td>{{$item->producto->nombre}}</td>
+                                <td class="text-center">{{$item->producto_id?$item->producto_id:"NULL"}}</td>
+                                <td>{{$item->nombreproducto}}</td>
                                 <td class="text-center">{{$item->cantidad}}</td>
                                 <td class="text-end">{{$item->precio}}</td>
                             </tr>
+                            @php
+                            $total+=$item->precio;
+                            @endphp
                             @empty
                             <tr>
                                 <td colspan="4" align="center"><i>No existen productos.</i></td>
                             </tr>
                             @endforelse
                         </tbody>
+                        <tfoot class="table-info">
+                            <td align="right" colspan="3"><strong>TOTAL Bs.</strong></td>
+                            <td align="right"><strong>{{number_format($total,2,'.')}}</strong></td>
+                        </tfoot>
                     </table>
                     {{-- @endif --}}
                 </div>

@@ -13,10 +13,12 @@ use App\Http\Controllers\SuscripcioneController;
 use App\Http\Controllers\TipodocController;
 use App\Http\Controllers\TiposervicioController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VntventaController;
 use App\Http\Controllers\ZonaController;
 use App\Http\Livewire\Fotosclientes;
 use App\Http\Livewire\Horarioservicios;
 use App\Http\Livewire\Impresiones\Recibosuscripcion;
+use App\Http\Livewire\Pos;
 use App\Http\Livewire\Pruebas;
 use App\Http\Livewire\Vntsuscripciones;
 
@@ -47,7 +49,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('clientes/statuschange/{id}', [ClienteController::class, 'statuschange'])->middleware('can:clientes.edit')->name('clientes.statuschange');
     Route::get('clientes/fotos/{cliente_id}', Fotosclientes::class)->middleware('can:clientes.edit')->name('fotosclientes');
-    Route::get('ventas/suscripcion-cliente', Vntsuscripciones::class)->name('ventas.suscli');
+    Route::get('admin/suscripcion-cliente', Vntsuscripciones::class)->name('ventas.suscripciones');
     Route::get('servicios/horarios/{servicio_id}', Horarioservicios::class)->middleware('can:servicios.edit')->name('servicios.horarios');
 
 
@@ -61,11 +63,14 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('admin/servicios', ServicioController::class)->names('servicios');
     Route::resource('admin/suscripciones', SuscripcioneController::class)->names('suscripciones');
     Route::resource('admin/contexturas', ContexturaController::class)->names('contexturas');
+    Route::resource('admin/ventas', VntventaController::class)->names('vntventas');
 
     Route::resource('admin/categorias', CategoriaController::class)->names('categorias');
     Route::resource('admin/productos', ProductoController::class)->names('productos');
     Route::resource('admin/compras', CompraController::class)->names('compras');
     Route::post('admin/compras/{id}/anular', [CompraController::class, 'anular'])->name('compras.anular');
+
+    Route::get('admin/puntoventa', Pos::class)->name('pos');
 
 
 

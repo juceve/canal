@@ -26,12 +26,12 @@ Compras
                         <table class="table table-striped table-hover dataTableD text-uppercase">
                             <thead class="thead">
                                 <tr>
-                                    <th>No</th>
+                                    <th class="text-center">No</th>
 
-                                    <th>Fecha</th>
+                                    <th class="text-center">Fecha</th>
                                     <th>Usuario</th>
-                                    <th>Estado</th>
-
+                                    <th class="text-end">Importe Bs.</th>
+                                    <th class="text-center">Estado</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -41,11 +41,12 @@ Compras
                                 $anulado="";
                                 @endphp
                                 <tr>
-                                    <td>{{ ++$i }}</td>
+                                    <td class="text-center">{{ ++$i }}</td>
 
-                                    <td>{{ $compra->fecha }}</td>
+                                    <td class="text-center">{{ $compra->fecha }}</td>
                                     <td>{{ $compra->user?$compra->user->name:'NULL' }}</td>
-                                    <td>
+                                    <td class="text-end">{{ number_format(importeCompra($compra->id),2,'.') }}</td>
+                                    <td class="text-center">
                                         @if ($compra->estado)
                                         <span class="badge rounded-pill bg-primary">Activo</span>
                                         @else
@@ -85,7 +86,7 @@ Compras
                     </div>
                 </div>
             </div>
-            {!! $compras->links() !!}
+
         </div>
     </div>
 </div>

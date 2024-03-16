@@ -105,24 +105,29 @@ class VariosSeeder extends Seeder
             'nombrecorto' => 'PA',
         ]);
 
+
         Vnttipopago::create([
             'nombre' => 'EFECTIVO',
             'nombrecorto' => 'EF',
+            'icon' => 'money-bill-alt',
             'factor' => 1,
         ]);
         Vnttipopago::create([
             'nombre' => 'PAGO QR',
             'nombrecorto' => 'QR',
+            'icon' => 'qrcode',
             'factor' => 1,
         ]);
         Vnttipopago::create([
             'nombre' => 'DEPOSITO BANCARIO',
             'nombrecorto' => 'DB',
+            'icon' => 'money-check-alt',
             'factor' => 1,
         ]);
         Vnttipopago::create([
             'nombre' => 'GASTO ADMINISTRATIVO',
             'nombrecorto' => 'GA',
+            'icon' => 'money-check',
             'factor' => 0,
         ]);
 

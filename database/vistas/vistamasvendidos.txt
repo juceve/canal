@@ -1,0 +1,8 @@
+CREATE VIEW vwmasvendidos AS
+SELECT * FROM vw_productos
+WHERE id IN (SELECT producto_id from (SELECT p.id producto_id, SUM(dv.cantidad) cantidad FROM vntdetalleventas dv
+INNER JOIN productos p ON p.id = dv.producto_id
+GROUP BY p.id, p.nombre
+ORDER BY cantidad DESC
+LIMIT 9) AS masvendidos)
+

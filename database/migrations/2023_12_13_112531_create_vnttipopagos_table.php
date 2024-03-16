@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('nombrecorto');
+            $table->string('icon')->nullable();
             $table->float('factor')->default(1);
             $table->boolean('status')->default(true);
             $table->timestamps();

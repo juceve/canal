@@ -17,7 +17,8 @@ class ActualizaCompra extends Component
         $producto_id = "",
         $cantidad = "",
         $precio = "",
-        $arrProductos = [];
+        $arrProductos = [],
+        $total = 0;
     public $compra, $compraProductos;
 
     public function mount($compra_id)
@@ -26,9 +27,14 @@ class ActualizaCompra extends Component
         $this->fecha = $this->compra->fecha;
 
         $this->compraProductos = $this->compra->compraProductos;
+        // dd($this->compraProductos);
         foreach ($this->compraProductos as $item) {
-            $producto = Producto::find($item->producto_id);
-            $this->arrProductos[] = array($producto->id, $producto->nombre, $item->cantidad, $item->precio);
+            // if ($item->producto_id) {
+            // $producto = Producto::find($item->producto_id);
+            $this->arrProductos[] = array($item->producto_id ? $item->producto_id : "NULL", $item->nombreproducto, $item->cantidad, $item->precio);
+            $this->total += $item->precio;
+            // } else {
+            // }
         }
     }
 
@@ -52,6 +58,7 @@ class ActualizaCompra extends Component
         $fila = array(
             $this->producto_id, $producto->nombre, $this->cantidad, $this->precio
         );
+        $this->total += $this->precio;
         $this->arrProductos[] = $fila;
         $this->reset([
             'producto_id',
@@ -63,6 +70,7 @@ class ActualizaCompra extends Component
 
     public function eliminarItem($id)
     {
+        $this->total -= $this->arrProductos[$id][3];
         unset($this->arrProductos[$id]);
         $this->arrProductos = array_values($this->arrProductos);
     }
@@ -92,6 +100,7 @@ class ActualizaCompra extends Component
                     $compraProducto = CompraProducto::create([
                         'producto_id' => $producto[0],
                         'compra_id' => $this->compra->id,
+                        'nombreproducto' => $producto[1],
                         'cantidad' => $producto[2],
                         'precio' => $producto[3],
                     ]);
@@ -102,7 +111,7 @@ class ActualizaCompra extends Component
                 }
 
                 DB::commit();
-                $this->reset(['arrProductos']);
+                $this->reset(['arrProductos', 'total', 'fecha']);
 
                 return redirect()->route('compras.index')
                     ->with('success', 'Compra editada correctamente');

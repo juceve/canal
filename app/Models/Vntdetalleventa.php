@@ -22,12 +22,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Vntdetalleventa extends Model
 {
-    
+
     static $rules = [
-		'detalle' => 'required',
-		'cantidad' => 'required',
-		'preciounitario' => 'required',
-		'subtotal' => 'required',
+        'detalle' => 'required',
+        'cantidad' => 'required',
+        'preciounitario' => 'required',
+        'subtotal' => 'required',
     ];
 
     protected $perPage = 20;
@@ -37,7 +37,7 @@ class Vntdetalleventa extends Model
      *
      * @var array
      */
-    protected $fillable = ['vntventa_id','servicio_id','detalle','cantidad','preciounitario','subtotal'];
+    protected $fillable = ['vntventa_id', 'servicio_id', 'producto_id', 'detalle', 'cantidad', 'preciounitario', 'subtotal'];
 
 
     /**
@@ -51,5 +51,8 @@ class Vntdetalleventa extends Model
     {
         return $this->hasOne('App\Models\Servicio', 'id', 'servicio_id');
     }
-
+    public function producto()
+    {
+        return $this->hasOne('App\Models\Producto', 'id', 'producto_id');
+    }
 }
