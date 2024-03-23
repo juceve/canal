@@ -96,7 +96,7 @@ class Modalpago extends Component
 
                             // LOGICA CANTIDAD DIAS DE SUSCRIPCION - MODALIDAD POR DIA
                             $inicio = new DateTime($pedido[1]);
-                            $final = "";
+                            $final = new DateTime();
                             $creditos = "";
                             $creditos = $pedido[0]['creditos'] * $pedido[3];
 
@@ -113,8 +113,10 @@ class Modalpago extends Component
                                     $final->modify('+ ' . $cant . 'day');
                                     $creditos = $pedido[3];
                                 }
-                                $final = $final->format('Y-m-d');
+                                // $final = $final->format('Y-m-d');
                             }
+
+                            $final = calcularFechaFinal($inicio->format('Y-m-d'), $final->format('Y-m-d'));
 
                             ///////////////////////////////////////////////////////////
 
@@ -144,7 +146,7 @@ class Modalpago extends Component
             DB::commit();
 
 
-            $this->emit('impservicios', $data);
+            // $this->emit('impservicios', $data);
 
             return redirect()->route('ventas.suscripciones')->with('success', 'Venta realizada con exito!');
         } catch (\Throwable $th) {

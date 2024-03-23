@@ -17,10 +17,12 @@ Contexturas
                         </span>
 
                         <div class="float-right">
+                            @can('contexturas.create')
                             <a href="{{ route('contexturas.create') }}" class="btn btn-primary btn-sm float-right"
                                 data-placement="left">
                                 <i class="fas fa-plus"></i> Nuevo
                             </a>
+                            @endcan
                         </div>
                     </div>
                 </div>
@@ -49,13 +51,17 @@ Contexturas
                                         <form action="{{ route('contexturas.destroy',$contextura->id) }}" method="POST"
                                             class="delete" onsubmit="return false">
 
+                                            @can('contexturas.edit')
                                             <a class="btn btn-sm btn-success"
                                                 href="{{ route('contexturas.edit',$contextura->id) }}"><i
                                                     class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                            @endcan
                                             @csrf
                                             @method('DELETE')
+                                            @can('contexturas.destroy')
                                             <button type="submit" class="btn btn-danger btn-sm"><i
                                                     class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                            @endcan
                                         </form>
                                     </td>
                                 </tr>

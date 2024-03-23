@@ -17,10 +17,12 @@ Tipo Servicios
                         </span>
 
                         <div class="float-right">
+                            @can('tiposervicios.create')
                             <a href="{{ route('tiposervicios.create') }}" class="btn btn-primary btn-sm float-right"
                                 data-placement="left">
                                 <i class="fas fa-plus"></i> Nuevo
                             </a>
+                            @endcan
                         </div>
                     </div>
                 </div>
@@ -51,13 +53,17 @@ Tipo Servicios
                                             <a class="btn btn-sm btn-primary "
                                                 href="{{ route('tiposervicios.show',$tiposervicio->id) }}"><i
                                                     class="fa fa-fw fa-eye"></i> Info</a>
+                                            @can('tiposervicios.edit')
                                             <a class="btn btn-sm btn-success"
                                                 href="{{ route('tiposervicios.edit',$tiposervicio->id) }}"><i
                                                     class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                            @endcan
                                             @csrf
                                             @method('DELETE')
+                                            @can('tiposervicios.destroy')
                                             <button type="submit" class="btn btn-danger btn-sm"><i
                                                     class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                            @endcan
                                         </form>
                                     </td>
                                 </tr>

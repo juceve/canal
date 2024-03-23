@@ -1,0 +1,4 @@
+CREATE VIEW vwproxvencimientosuscs AS
+SELECT * FROM suscripciones
+WHERE DATEDIFF(final, CURDATE()) BETWEEN 0 AND 3
+AND	status = true

@@ -11,9 +11,11 @@ Categorias de Producto
         <h4>Categorias de Producto</h4>
 
         <div class="float-right">
+            @can('categorias.create')
             <a href="{{ route('categorias.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
                 <i class="fas fa-plus"></i> Nuevo
             </a>
+            @endcan
         </div>
     </div>
 
@@ -46,13 +48,17 @@ Categorias de Producto
                                             <a class="btn btn-sm btn-primary "
                                                 href="{{ route('categorias.show',$categoria->id) }}" title="Ver Info"><i
                                                     class="fa fa-fw fa-eye"></i></a>
+                                            @can('categorias.edit')
                                             <a class="btn btn-sm btn-success"
                                                 href="{{ route('categorias.edit',$categoria->id) }}" title="Editar"><i
                                                     class="fa fa-fw fa-edit"></i></a>
+                                            @endcan
                                             @csrf
                                             @method('DELETE')
+                                            @can('categorias.destroy')
                                             <button type="submit" class="btn btn-danger btn-sm" title="Eliminar"><i
                                                     class="fa fa-fw fa-trash"></i></button>
+                                            @endcan
                                         </form>
                                     </td>
                                 </tr>

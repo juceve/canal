@@ -60,9 +60,9 @@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar">
             <div class="sidebar-header">
-                <a href="#" class="sidebar-brand" style="font-size: 20px;">
+                <a href="#" class="sidebar-brand" style="font-size: 15px;">
                     {{-- <img src="{{ asset('admin/assets/images/favicon.png') }}" style="width: 25px"> --}}
-                    <small>CROSS</small> <span>{{ config('app.name') }}</span>
+                    <small>ROM</small> <span>{{ config('app.name') }}</span>
                 </a>
                 <div class="sidebar-toggler not-active">
                     <span style="background-color: #000865"></span>

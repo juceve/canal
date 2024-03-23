@@ -1,9 +1,9 @@
 <div>
     @section('template_title')
-    PUNTO DE VENTA
+    PUNTO DE VENTA - PRODUCTOS
     @endsection
 
-    <h3 class="mb-3">PUNTO DE VENTA <i class="fas fa-shopping-cart"></i></h3>
+    <h3 class="mb-3">PUNTO DE VENTA - PRODUCTOS <i class="fas fa-shopping-cart"></i></h3>
     <div class="row">
         <div class="col-12  col-lg-7 mt-3">
             <h5 class="text-secondary">SELECCIÓN DE PRODUCTOS</h5>

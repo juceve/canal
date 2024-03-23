@@ -72,14 +72,18 @@
                                 <a class="dropdown-item" href="{{route('vntventas.show',$venta->id)}}"><i
                                         class="fas fa-fw fa-eye"></i>
                                     Detalles</a>
+                                @can('pos.edit')
                                 <a href="ventas/{{$venta->id}}/edit" class="dropdown-item"><i class="fas fa-edit"></i>
                                     Editar</a>
                                 <button class="dropdown-item" onclick='devolucion({{$venta->id}})'>
                                     <i class="fas fa-undo"></i>
                                     Devolución</button>
+                                @endcan
+                                @can('pos.destroy')
                                 <button class="dropdown-item" onclick='eliminar({{$venta->id}})'>
                                     <i class="fas fa-trash"></i>
                                     Eliminar</button>
+                                @endcan
 
                             </div>
                         </div>

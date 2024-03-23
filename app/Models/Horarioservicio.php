@@ -19,10 +19,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Horarioservicio extends Model
 {
-    
+
     static $rules = [
-		'servicio_id' => 'required',
-		'hora' => 'required',
+        'servicio_id' => 'required',
+        'hora' => 'required',
     ];
 
     protected $perPage = 20;
@@ -32,7 +32,7 @@ class Horarioservicio extends Model
      *
      * @var array
      */
-    protected $fillable = ['servicio_id','hora'];
+    protected $fillable = ['servicio_id', 'hora', 'couch_id'];
 
 
     /**
@@ -42,7 +42,12 @@ class Horarioservicio extends Model
     {
         return $this->hasOne('App\Models\Servicio', 'id', 'servicio_id');
     }
-    
+
+    public function couch()
+    {
+        return $this->hasOne('App\Models\Couch', 'id', 'couch_id');
+    }
+
     public function suscripciones()
     {
         return $this->hasMany('App\Models\Suscripcione', 'horarioservcio_id', 'id');

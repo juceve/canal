@@ -2,18 +2,20 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Couch;
 use App\Models\Horarioservicio;
 use App\Models\Servicio;
 use Livewire\Component;
 
 class Horarioservicios extends Component
 {
-    public $servicio = null, $servicio_id = null, $hora = "";
+    public $servicio = null, $servicio_id = null, $hora = "", $couches, $selCouch;
 
     public function mount($servicio_id)
     {
         $this->servicio_id = $servicio_id;
         $this->servicio = new Servicio();
+        $this->couches = Couch::where('status', 1)->get();
     }
     public function render()
     {
@@ -25,6 +27,7 @@ class Horarioservicios extends Component
 
     protected $rules = [
         'hora' => 'required',
+        'selCouch' => 'required',
     ];
 
     public function agregar()
@@ -33,6 +36,7 @@ class Horarioservicios extends Component
         $hora = Horarioservicio::create([
             'hora' => $this->hora,
             'servicio_id' => $this->servicio->id,
+            'couch_id' => $this->selCouch,
         ]);
         $this->reset('hora');
     }

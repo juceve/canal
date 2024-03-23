@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('horarioservicios', function (Blueprint $table) {
+        Schema::create('feriados', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('servicio_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('couch_id')->nullable()->constrained()->nullOnDelete();
-            $table->string('hora', 5);
+            $table->string('mesdia');
+            $table->string('gestion');
+            $table->string('nombre');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('horarioservicios');
+        Schema::dropIfExists('feriados');
     }
 };

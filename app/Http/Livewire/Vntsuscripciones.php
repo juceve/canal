@@ -11,7 +11,7 @@ class Vntsuscripciones extends Component
 {
     public $cliente = null, $cliente_nombre = "", $clientes = null, $cliente_id = 0, $servicios = null;
     public $pedido = array(), $selServicio = "", $totalPedido = 0, $fechas = array(), $servicioAg = null, $horarios = null;
-    public $selHorario = "", $selFecha = "", $selCantidad = "1";
+    public $selHorario = "", $selFecha = "", $selCantidad = "1", $couch;
 
     public function mount()
     {
@@ -25,10 +25,17 @@ class Vntsuscripciones extends Component
         $this->horarios = $this->servicioAg->horarioservicio;
     }
 
-    protected $rules = [
-       
+    public function updatedSelHorario()
+    {
+        if ($this->selHorario != "") {
+            $horario = Horarioservicio::find($this->selHorario);
+            $this->couch = $horario->couch ? $horario->couch->nombre : "NULL";
+        } else {
+            $this->couch = "";
+        }
+    }
 
-    ];
+    protected $rules = [];
 
     public function render()
     {
@@ -49,13 +56,13 @@ class Vntsuscripciones extends Component
 
 
     public function limpiarCliente()
-    {        
-        $this->reset('cliente_nombre','cliente','cliente_id');
+    {
+        $this->reset('cliente_nombre', 'cliente', 'cliente_id');
     }
 
     public function agregaPedido()
     {
-       
+
         if ($this->selServicio) {
             $horario = Horarioservicio::find($this->selHorario);
             $servicio = Servicio::find($this->selServicio);

@@ -8,12 +8,14 @@ Compras
 <div class="container-fluid">
     <div style="display: flex; justify-content: space-between; align-items: center;" class="mb-3">
 
-        <h4>Compras</h4>
+        <h3>COMPRAS <i class="link-icon" data-feather="shopping-bag"></i></h3>
 
         <div class="float-right">
+            @can('compras.create')
             <a href="{{ route('compras.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
                 <i class="fas fa-plus"></i> Nuevo
             </a>
+            @endcan
         </div>
     </div>
 
@@ -72,11 +74,15 @@ Compras
                                             <a class="btn btn-sm btn-primary "
                                                 href="{{ route('compras.show',$compra->id) }}" title="Ver Info"><i
                                                     class="fa fa-fw fa-eye"></i></a>
+                                            @can('compras.edit')
                                             <a class="btn btn-sm btn-success {{$anulado}}"
                                                 href="{{ route('compras.edit',$compra->id) }}" title="Editar"><i
                                                     class="fa fa-fw fa-edit"></i></a>
+                                            @endcan
+                                            @can('compras.destroy')
                                             <button class="btn btn-sm btn-danger {{$anulado}}" title="Anular"><i
                                                     class="fa fa-fw fa-ban"></i></button>
+                                            @endcan
                                         </form>
                                     </td>
                                 </tr>

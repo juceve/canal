@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
 @section('template_title')
-Productos
+Feriados
 @endsection
 
 @section('content')
 <div class="container-fluid">
     <div style="display: flex; justify-content: space-between; align-items: center;" class="mb-3">
 
-        <h4>Productos</h4>
+        <h4>Feriados</h4>
 
         <div class="float-right">
-            @can('productos.create')
-            <a href="{{ route('productos.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
+            @can('feriados.create')
+            <a href="{{ route('feriados.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
                 <i class="fas fa-plus"></i> Nuevo
             </a>
             @endcan
@@ -25,41 +25,41 @@ Productos
 
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover dataTableD text-uppercase">
+                        <table class="table table-striped table-hover dataTableD">
                             <thead class="thead">
                                 <tr>
                                     <th>No</th>
 
+                                    <th>Mes-Día</th>
+                                    <th>Gestion</th>
                                     <th>Nombre</th>
-                                    <th>Categoria</th>
-                                    <th>Stock</th>
 
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($productos as $producto)
+                                @foreach ($feriados as $feriado)
                                 <tr>
                                     <td>{{ ++$i }}</td>
 
-                                    <td>{{ $producto->nombre }}</td>
-                                    <td>{{ $producto->categoria?$producto->categoria->nombre:"NULL" }}</td>
-                                    <td>{{ $producto->stocks->first()->cantidad }}</td>
+                                    <td>{{ $feriado->mesdia }}</td>
+                                    <td>{{ $feriado->gestion }}</td>
+                                    <td>{{ $feriado->nombre }}</td>
 
-                                    <td align="right">
-                                        <form action="{{ route('productos.destroy',$producto->id) }}" method="POST"
-                                            class="delete" onsubmit="return false">
+                                    <td class="text-end">
+                                        <form action="{{ route('feriados.destroy',$feriado->id) }}" method="POST"
+                                            onsubmit="return false" class="delete">
                                             <a class="btn btn-sm btn-primary "
-                                                href="{{ route('productos.show',$producto->id) }}" title="Ver Info"><i
+                                                href="{{ route('feriados.show',$feriado->id) }}" title="Ver Info"><i
                                                     class="fa fa-fw fa-eye"></i></a>
-                                            @can('productos.edit')
+                                            @can('feriados.create')
                                             <a class="btn btn-sm btn-success"
-                                                href="{{ route('productos.edit',$producto->id) }}" title="Editar"><i
+                                                href="{{ route('feriados.edit',$feriado->id) }}" title="Editar"><i
                                                     class="fa fa-fw fa-edit"></i></a>
                                             @endcan
                                             @csrf
                                             @method('DELETE')
-                                            @can('productos.destroy')
+                                            @can('feriados.destroy')
                                             <button type="submit" class="btn btn-danger btn-sm" title="Eliminar"><i
                                                     class="fa fa-fw fa-trash"></i></button>
                                             @endcan
@@ -72,7 +72,7 @@ Productos
                     </div>
                 </div>
             </div>
-
+            {{-- {!! $feriados->links() !!} --}}
         </div>
     </div>
 </div>

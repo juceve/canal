@@ -34,15 +34,15 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Cliente extends Model
 {
-    
+
     static $rules = [
-		'nombre' => 'required',
-		'celular' => 'required',
-		'email' => 'required',
-		'fechanacimiento' => 'required',
-		'zona_id' => 'required',
-		'genero_id' => 'required',
-		'status' => 'required',
+        'nombre' => 'required',
+        'celular' => 'required',
+        'email' => 'required',
+        'fechanacimiento' => 'required',
+        'zona_id' => 'required',
+        'genero_id' => 'required',
+        'status' => 'required',
     ];
 
     protected $perPage = 20;
@@ -52,7 +52,7 @@ class Cliente extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre','direccion','tipodoc_id','nrodoc','celular','telefono','email','fechanacimiento','zona_id','genero_id','nObjetivos','status'];
+    protected $fillable = ['nombre', 'direccion', 'tipodoc_id', 'nrodoc', 'celular', 'telefono', 'email', 'fechanacimiento', 'zona_id', 'genero_id', 'nObjetivos', 'status'];
 
 
     /**
@@ -62,7 +62,7 @@ class Cliente extends Model
     {
         return $this->hasMany('App\Models\Datosfisico', 'cliente_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -70,7 +70,7 @@ class Cliente extends Model
     {
         return $this->hasMany('App\Models\Detalleobjetivo', 'cliente_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -78,7 +78,7 @@ class Cliente extends Model
     {
         return $this->hasOne('App\Models\Genero', 'id', 'genero_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -86,7 +86,7 @@ class Cliente extends Model
     {
         return $this->hasMany('App\Models\Imagencliente', 'cliente_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -94,7 +94,7 @@ class Cliente extends Model
     {
         return $this->hasOne('App\Models\Tipodoc', 'id', 'tipodoc_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -102,9 +102,14 @@ class Cliente extends Model
     {
         return $this->hasOne('App\Models\Zona', 'id', 'zona_id');
     }
-    
+
     public function suscripciones()
     {
         return $this->hasMany('App\Models\Suscripcione', 'cliente_id', 'id');
+    }
+
+    public function licencias()
+    {
+        return $this->hasMany('App\Models\Licencia', 'cliente_id', 'id');
     }
 }

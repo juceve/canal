@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
 @section('template_title')
-Productos
+Couches
 @endsection
 
 @section('content')
 <div class="container-fluid">
     <div style="display: flex; justify-content: space-between; align-items: center;" class="mb-3">
 
-        <h4>Productos</h4>
+        <h4>Couches</h4>
 
         <div class="float-right">
-            @can('productos.create')
-            <a href="{{ route('productos.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
+            @can('couches.create')
+            <a href="{{ route('couches.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
                 <i class="fas fa-plus"></i> Nuevo
             </a>
             @endcan
@@ -31,35 +31,42 @@ Productos
                                     <th>No</th>
 
                                     <th>Nombre</th>
-                                    <th>Categoria</th>
-                                    <th>Stock</th>
-
+                                    <th>Telefono</th>
+                                    <th>Email</th>
+                                    <th>Estado</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($productos as $producto)
+                                @foreach ($couches as $couch)
                                 <tr>
                                     <td>{{ ++$i }}</td>
 
-                                    <td>{{ $producto->nombre }}</td>
-                                    <td>{{ $producto->categoria?$producto->categoria->nombre:"NULL" }}</td>
-                                    <td>{{ $producto->stocks->first()->cantidad }}</td>
+                                    <td>{{ $couch->nombre }}</td>
+                                    <td>{{ $couch->telefono }}</td>
+                                    <td>{{ $couch->email }}</td>
+                                    <td>
+                                        @if ($couch->status)
+                                        <span class="badge rounded-pill bg-primary">Activo</span>
+                                        @else
+                                        <span class="badge rounded-pill bg-secondary">Inactivo</span>
+                                        @endif
+                                    </td>
 
-                                    <td align="right">
-                                        <form action="{{ route('productos.destroy',$producto->id) }}" method="POST"
-                                            class="delete" onsubmit="return false">
+                                    <td class="text-end">
+                                        <form action="{{ route('couches.destroy',$couch->id) }}" method="POST"
+                                            onsubmit="return false" class="delete">
                                             <a class="btn btn-sm btn-primary "
-                                                href="{{ route('productos.show',$producto->id) }}" title="Ver Info"><i
+                                                href="{{ route('couches.show',$couch->id) }}" title="Ver Info"><i
                                                     class="fa fa-fw fa-eye"></i></a>
-                                            @can('productos.edit')
+                                            @can('couches.edit')
                                             <a class="btn btn-sm btn-success"
-                                                href="{{ route('productos.edit',$producto->id) }}" title="Editar"><i
+                                                href="{{ route('couches.edit',$couch->id) }}" title="Editar"><i
                                                     class="fa fa-fw fa-edit"></i></a>
                                             @endcan
                                             @csrf
                                             @method('DELETE')
-                                            @can('productos.destroy')
+                                            @can('couches.destroy')
                                             <button type="submit" class="btn btn-danger btn-sm" title="Eliminar"><i
                                                     class="fa fa-fw fa-trash"></i></button>
                                             @endcan
@@ -72,7 +79,7 @@ Productos
                     </div>
                 </div>
             </div>
-
+            {!! $couches->links() !!}
         </div>
     </div>
 </div>

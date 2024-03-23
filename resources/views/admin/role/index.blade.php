@@ -10,13 +10,15 @@ ROLES
     <h4>Roles de Usuario</h4>
 
     <div class="float-right">
+        @can('admin.roles.create')
         <a href="{{ route('admin.roles.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
             <i class="fas fa-plus"></i> Nuevo
         </a>
+        @endcan
     </div>
 </div>
 <div class="card">
-    
+
     <div class="card-body">
         <table class="table table-bordered dataTable">
             <thead class="table-info">
@@ -37,13 +39,14 @@ ROLES
                             @csrf
                             @method('DELETE')
                             @can('admin.roles.edit')
-                                <a href="{{route('admin.roles.edit',$role->id)}}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Editar</a>
+                            <a href="{{route('admin.roles.edit',$role->id)}}" class="btn btn-sm btn-primary"><i
+                                    class="fas fa-edit"></i> Editar</a>
                             @endcan
                             @can('admin.roles.destroy')
-                                 <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{
                                 __('Borrar') }}</button>
-                            @endcan                            
-                           
+                            @endcan
+
                         </form>
                     </td>
                 </tr>

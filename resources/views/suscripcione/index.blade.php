@@ -13,9 +13,12 @@ Listado Suscripciones
         </h4>
 
         <div class="float-right">
-            <a href="{{ route('ventas.suscli') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
+            @can('pos.create')
+            <a href="{{ route('ventas.suscripciones') }}" class="btn btn-primary btn-sm float-right"
+                data-placement="left">
                 <i class="fas fa-plus"></i> Nuevo
             </a>
+            @endcan
         </div>
     </div>
     <div class="row">
@@ -69,8 +72,10 @@ Listado Suscripciones
                                                 title="Editar"><i class="fa fa-fw fa-edit"></i> </a> --}}
                                             @csrf
                                             @method('DELETE')
+                                            @can('pos.destroy')
                                             <button type="submit" class="btn btn-outline-danger btn-sm"
                                                 title="Anular"><i class="fa fa-fw fa-ban"></i> </button>
+                                            @endcan
                                         </form>
                                     </td>
                                 </tr>
