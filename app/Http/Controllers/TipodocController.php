@@ -20,10 +20,10 @@ class TipodocController extends Controller
     }
     public function index()
     {
-        $tipodocs = Tipodoc::paginate();
+        $tipodocs = Tipodoc::all();
 
         return view('tipodoc.index', compact('tipodocs'))
-            ->with('i', (request()->input('page', 1) - 1) * $tipodocs->perPage());
+            ->with('i', 0);
     }
 
     /**

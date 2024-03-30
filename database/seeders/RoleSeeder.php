@@ -93,5 +93,18 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'couches.create',  'grupo' => 'COUCHES', 'descripcion' => 'Crear'])->assignRole([$role]);
         Permission::create(['name' => 'couches.edit',  'grupo' => 'COUCHES', 'descripcion' => 'Editar'])->assignRole([$role]);
         Permission::create(['name' => 'couches.destroy',  'grupo' => 'COUCHES', 'descripcion' => 'Eliminar'])->assignRole([$role]);
+
+        Permission::create(['name' => 'movimientos.index',  'grupo' => 'MOVIMIENTOS', 'descripcion' => 'Ver listado'])->assignRole([$role]);
+        Permission::create(['name' => 'movimientos.create',  'grupo' => 'MOVIMIENTOS', 'descripcion' => 'Crear'])->assignRole([$role]);
+        Permission::create(['name' => 'movimientos.edit',  'grupo' => 'MOVIMIENTOS', 'descripcion' => 'Editar'])->assignRole([$role]);
+        Permission::create(['name' => 'movimientos.destroy',  'grupo' => 'MOVIMIENTOS', 'descripcion' => 'Eliminar'])->assignRole([$role]);
+
+        Permission::create(['name' => 'cuentas.index',  'grupo' => 'CUENTAS', 'descripcion' => 'Ver listado'])->assignRole([$role]);
+        Permission::create(['name' => 'cuentas.create',  'grupo' => 'CUENTAS', 'descripcion' => 'Crear'])->assignRole([$role]);
+        Permission::create(['name' => 'cuentas.edit',  'grupo' => 'CUENTAS', 'descripcion' => 'Editar'])->assignRole([$role]);
+        Permission::create(['name' => 'cuentas.destroy',  'grupo' => 'CUENTAS', 'descripcion' => 'Eliminar'])->assignRole([$role]);
+
+        Permission::create(['name' => 'creditos.index',  'grupo' => 'CREDITOS', 'descripcion' => 'Ver listado'])->assignRole([$role]);
+        Permission::create(['name' => 'creditos.create',  'grupo' => 'CREDITOS', 'descripcion' => 'Crear'])->assignRole([$role]);
     }
 }

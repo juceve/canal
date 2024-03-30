@@ -20,10 +20,10 @@ class ZonaController extends Controller
     }
     public function index()
     {
-        $zonas = Zona::paginate();
+        $zonas = Zona::all();
 
         return view('zona.index', compact('zonas'))
-            ->with('i', (request()->input('page', 1) - 1) * $zonas->perPage());
+            ->with('i', 0);
     }
 
     /**

@@ -20,10 +20,10 @@ class ObjetivoController extends Controller
     }
     public function index()
     {
-        $objetivos = Objetivo::paginate();
+        $objetivos = Objetivo::all();
 
         return view('objetivo.index', compact('objetivos'))
-            ->with('i', (request()->input('page', 1) - 1) * $objetivos->perPage());
+            ->with('i', 0);
     }
 
     /**

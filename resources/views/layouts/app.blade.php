@@ -135,13 +135,13 @@
         $(document).ready(() => {
             $('.dataTable').dataTable({
                 language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+                    url: '{{asset("plugins/")}}',
                 },
             });
             $('.dataTableD').dataTable({
                 order: [[0, 'desc']],
                 language: {                    
-                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+                    url: '{{asset("plugins/es-ES.json")}}',
                 },
             });
         })
@@ -208,7 +208,7 @@
             $('.dataTableD').dataTable({
                 order: [[0, 'desc']],
                 language: {                    
-                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+                    url: '{{asset("plugins/es-ES.json")}}',
                 },
             });
         })

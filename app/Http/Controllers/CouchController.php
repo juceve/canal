@@ -18,10 +18,10 @@ class CouchController extends Controller
      */
     public function index()
     {
-        $couches = Couch::paginate();
+        $couches = Couch::all();
 
         return view('couch.index', compact('couches'))
-            ->with('i', (request()->input('page', 1) - 1) * $couches->perPage());
+            ->with('i', 0);
     }
 
     /**

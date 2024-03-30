@@ -18,10 +18,10 @@ class VnttipopagoController extends Controller
      */
     public function index()
     {
-        $vnttipopagos = Vnttipopago::paginate();
+        $vnttipopagos = Vnttipopago::all();
 
         return view('vnttipopago.index', compact('vnttipopagos'))
-            ->with('i', (request()->input('page', 1) - 1) * $vnttipopagos->perPage());
+            ->with('i', 0);
     }
 
     /**

@@ -18,10 +18,10 @@ class StockController extends Controller
      */
     public function index()
     {
-        $stocks = Stock::paginate();
+        $stocks = Stock::all();
 
         return view('stock.index', compact('stocks'))
-            ->with('i', (request()->input('page', 1) - 1) * $stocks->perPage());
+            ->with('i', 0);
     }
 
     /**

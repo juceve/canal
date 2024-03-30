@@ -79,7 +79,7 @@ Couches
                     </div>
                 </div>
             </div>
-            {!! $couches->links() !!}
+
         </div>
     </div>
 </div>

@@ -45,22 +45,29 @@
                 </ul>
             </div>
         </li>
+        @can('creditos.index')
+        <li class="nav-item">
+            <a href="/admin/creditos" class="nav-link">
+                <i class="link-icon" data-feather="archive"></i>
+                <span class="link-title">Créditos</span>
+            </a>
+        </li>
+        @endcan
         @can('compras.index')
         <li class="nav-item">
             <a href="/admin/compras" class="nav-link">
                 <i class="link-icon" data-feather="shopping-bag"></i>
-                <span class="link-title">Compras</span>
+                <span class="link-title">Compra Productos</span>
             </a>
         </li>
         @endcan
+
         {{-- <li class="nav-item">
             <a href="{{route('clientes.index')}}" class="nav-link">
                 <i class="link-icon" data-feather="database"></i>
                 <span class="link-title">Clientes</span>
             </a>
         </li> --}}
-        <li class="nav-item nav-category">SISTEMA</li>
-
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#mantenimiento" role="button" aria-expanded="false"
                 aria-controls="mantenimiento">
@@ -95,13 +102,17 @@
                     </li>
                     @endcan
 
-
+                    @can('movimientos.index')
+                    <li class="nav-item">
+                        <a href="{{ route('movimientos.index') }}" class="nav-link">Movimientos</a>
+                    </li>
+                    @endcan
 
 
                 </ul>
             </div>
         </li>
-
+        <li class="nav-item nav-category">SISTEMA</li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#paramentros" role="button" aria-expanded="false"
                 aria-controls="paramentros">
@@ -144,7 +155,13 @@
                     @endcan
 
                     <li class="nav-item nav-category">SISTEMA</li>
+                    @can('cuentas.index')
+                    <li class="nav-item">
+                        <a href="{{ route('cuentas.index') }}" class="nav-link">Cuentas</a>
+                    </li>
+                    @endcan
                     @can('feriados.index')
+
                     <li class="nav-item">
                         <a href="{{ route('feriados.index') }}" class="nav-link">Feriados</a>
                     </li>

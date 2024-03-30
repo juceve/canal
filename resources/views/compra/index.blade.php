@@ -8,7 +8,7 @@ Compras
 <div class="container-fluid">
     <div style="display: flex; justify-content: space-between; align-items: center;" class="mb-3">
 
-        <h3>COMPRAS <i class="link-icon" data-feather="shopping-bag"></i></h3>
+        <h3>COMPRA DE PRODUCTOS <i class="link-icon" data-feather="shopping-bag"></i></h3>
 
         <div class="float-right">
             @can('compras.create')

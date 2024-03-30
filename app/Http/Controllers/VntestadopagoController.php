@@ -18,10 +18,10 @@ class VntestadopagoController extends Controller
      */
     public function index()
     {
-        $vntestadopagos = Vntestadopago::paginate();
+        $vntestadopagos = Vntestadopago::all();
 
         return view('vntestadopago.index', compact('vntestadopagos'))
-            ->with('i', (request()->input('page', 1) - 1) * $vntestadopagos->perPage());
+            ->with('i', 0);
     }
 
     /**

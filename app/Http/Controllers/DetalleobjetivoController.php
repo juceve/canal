@@ -18,10 +18,10 @@ class DetalleobjetivoController extends Controller
      */
     public function index()
     {
-        $detalleobjetivos = Detalleobjetivo::paginate();
+        $detalleobjetivos = Detalleobjetivo::all();
 
         return view('detalleobjetivo.index', compact('detalleobjetivos'))
-            ->with('i', (request()->input('page', 1) - 1) * $detalleobjetivos->perPage());
+            ->with('i', 0);
     }
 
     /**

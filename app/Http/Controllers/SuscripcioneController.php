@@ -18,10 +18,10 @@ class SuscripcioneController extends Controller
      */
     public function index()
     {
-        $suscripciones = Suscripcione::paginate();
+        $suscripciones = Suscripcione::all();
 
         return view('suscripcione.index', compact('suscripciones'))
-            ->with('i', (request()->input('page', 1) - 1) * $suscripciones->perPage());
+            ->with('i', 0);
     }
 
     /**

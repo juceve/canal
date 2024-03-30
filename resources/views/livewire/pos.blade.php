@@ -9,12 +9,15 @@
             <h5 class="text-secondary">SELECCIÓN DE PRODUCTOS</h5>
             <div class="card mt-2">
                 <div class="card-body">
-                    {{-- <button class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">Modal</button> --}}
+                    <div class="row">
+                        <div class="col-12 col-sm-6"><label class="text-secondary">CATEGORIAS</label></div>
+                        <div class="col-12 col-sm-6 text-end">
+                            <button class="btn btn-outline-info" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">Busqueda Avanzada <i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
 
-
-                    <label class="text-secondary">CATEGORIAS</label>
-                    <nav class="mt-3" wire:ignore>
+                    <nav class="mt-1" wire:ignore>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <button class="nav-link active" id="nav-vendidos-tab" data-bs-toggle="tab"
                                 data-bs-target="#nav-vendidos" type="button" role="tab" aria-controls="nav-vendidos"
@@ -198,6 +201,13 @@
                 <button class="btn btn-success m-1 px-5 py-3" wire:click='procesar'
                     wire:loading.attr="disabled">PROCESAR <i class="fas fa-check"></i></button>
             </div>
+            @can('creditos.create')
+            <div class="d-flex justify-content-end m-3">
+                <button class="btn btn-warning m-1 px-5 py-3" wire:loading.attr="disabled" data-bs-toggle="modal"
+                    data-bs-target="#clientes">A CUENTA
+                    <i class="fas fa-file-invoice-dollar"></i></button>
+            </div>
+            @endcan
             @endif
 
         </div>
@@ -205,7 +215,7 @@
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
         wire:ignore.self>
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Busqueda Avanzada</h1>
@@ -269,12 +279,56 @@
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade" id="clientes" tabindex="-1" aria-labelledby="clientesLabel" aria-hidden="true" wire:ignore>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="clientesLabel">Clientes</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table dataTable w-100">
+                            <thead>
+                                <tr class="table-primary">
+                                    <td>ID</td>
+                                    <td>CLIENTE</td>
+                                    <td>CELULAR</td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if ($clientes)
+                                @foreach ($clientes as $cliente)
+                                <tr>
+
+                                    <td>{{$cliente->id}}</td>
+                                    <td>{{$cliente->nombre}}</td>
+                                    <td>{{$cliente->celular}}</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-warning " title="Aplicar credito temporal"
+                                            onclick="aplicarCredito({{$cliente->id}})" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            Aplicar
+                                            <i class="fas fa-file-invoice-dollar"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section('js')
-<script>
-
-</script>
 <script>
     function seleccionar(id){
         @this.set('selTipoID',id);
@@ -335,6 +389,12 @@
         
 
     } 
+</script>
+
+<script>
+    function aplicarCredito(id){
+        Livewire.emit('acuenta',id);
+    }
 </script>
 
 @endsection

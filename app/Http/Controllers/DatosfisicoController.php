@@ -18,10 +18,10 @@ class DatosfisicoController extends Controller
      */
     public function index()
     {
-        $datosfisicos = Datosfisico::paginate();
+        $datosfisicos = Datosfisico::all();
 
         return view('datosfisico.index', compact('datosfisicos'))
-            ->with('i', (request()->input('page', 1) - 1) * $datosfisicos->perPage());
+            ->with('i', 0);
     }
 
     /**

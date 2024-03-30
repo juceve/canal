@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Compra;
 use App\Models\CompraProducto;
+use App\Models\Movimiento;
 use App\Models\Producto;
 use App\Models\Stock;
 use Illuminate\Support\Facades\Auth;
@@ -76,6 +77,8 @@ class RegistroCompra extends Component
                     'fecha' => $this->fecha,
                     'user_id' => Auth::user()->id,
                 ]);
+
+
                 foreach ($this->arrProductos as $producto) {
                     $compraProducto = CompraProducto::create([
                         'producto_id' => $producto[0],
@@ -89,6 +92,16 @@ class RegistroCompra extends Component
                     $stock->cantidad += $producto[2];
                     $stock->save();
                 }
+
+                $movimiento = Movimiento::create([
+                    'fecha' => date('Y-m-d'),
+                    'user_id' => Auth::user()->id,
+                    'importe' => $this->total,
+                    'glosa' => "COMPRA PRODUCTOS",
+                    'cuenta_id' => 1,
+                    'model_id' => $compra->id,
+                    'model_type' => Compra::class,
+                ]);
 
                 DB::commit();
                 $this->reset(['arrProductos', 'total', 'fecha']);

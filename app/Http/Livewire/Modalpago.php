@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Movimiento;
 use App\Models\Servicio;
 use App\Models\Suscripcione;
 use App\Models\Vntdetalleventa;
@@ -56,6 +57,16 @@ class Modalpago extends Component
                 'observaciones' => $this->observaciones,
                 'vntestadopago_id' => 1,
                 'status' => 1,
+            ]);
+
+            $movimiento = Movimiento::create([
+                'fecha' => date('Y-m-d'),
+                'user_id' => Auth::user()->id,
+                'importe' => $this->arrParamentros[3] * $tipo->factor,
+                'glosa' => "VENTA SUSCRIPCIÓN",
+                'cuenta_id' => 4,
+                'model_id' => $venta->id,
+                'model_type' => Vntventa::class,
             ]);
 
             $data .= $venta->id . "|" . $venta->fecha . "|" . $venta->cliente . "|" . $venta->importe;

@@ -18,10 +18,10 @@ class GeneroController extends Controller
      */
     public function index()
     {
-        $generos = Genero::paginate();
+        $generos = Genero::all();
 
         return view('genero.index', compact('generos'))
-            ->with('i', (request()->input('page', 1) - 1) * $generos->perPage());
+            ->with('i', 0);
     }
 
     /**

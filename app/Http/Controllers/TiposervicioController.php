@@ -18,10 +18,10 @@ class TiposervicioController extends Controller
      */
     public function index()
     {
-        $tiposervicios = Tiposervicio::paginate();
+        $tiposervicios = Tiposervicio::all();
 
         return view('tiposervicio.index', compact('tiposervicios'))
-            ->with('i', (request()->input('page', 1) - 1) * $tiposervicios->perPage());
+            ->with('i', 0);
     }
 
     /**

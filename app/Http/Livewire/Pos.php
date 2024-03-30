@@ -2,7 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Acuenta;
 use App\Models\Categoria;
+use App\Models\Cliente;
+use App\Models\Movimiento;
 use App\Models\Producto;
 use App\Models\Stock;
 use App\Models\Vntdetalleventa;
@@ -21,6 +24,7 @@ class Pos extends Component
     public $selID = "", $cantidad = "", $cart = [], $total = 0;
     public $tipopagos, $selTipoID = 1;
     public $pagado = 0, $cambio = 0;
+    public $cliente_id, $clientes;
 
     public $categorias;
 
@@ -41,16 +45,18 @@ class Pos extends Component
 
     public function mount()
     {
-
         $this->masVendidos = Vwmasvendidos::all();
         $this->tipopagos = Vnttipopago::all();
         $this->categorias = Categoria::all();
+        $this->clientes = Cliente::where('status', 1)->get();
     }
 
     public function render()
     {
         return view('livewire.pos')->extends('layouts.app');
     }
+
+    protected $listeners = ['acuenta'];
 
     public function seleccionarProducto($id)
     {
@@ -136,13 +142,24 @@ class Pos extends Component
     {
         DB::beginTransaction();
         try {
+            $tipopago = Vnttipopago::find($this->selTipoID);
             $venta = Vntventa::create([
                 'user_id' => Auth::user()->id,
                 'fecha' => date('Y-m-d'),
                 'cliente' => "PREDETERMINADO",
                 'observaciones' => "VENTA POS",
-                'importe' => $this->total,
+                'importe' => $this->total * $tipopago->factor,
                 'vntestadopago_id' => 2
+            ]);
+
+            $movimiento = Movimiento::create([
+                'fecha' => date('Y-m-d'),
+                'user_id' => Auth::user()->id,
+                'importe' => $this->total * $tipopago->factor,
+                'glosa' => "VENTA POS",
+                'cuenta_id' => 3,
+                'model_id' => $venta->id,
+                'model_type' => Vntventa::class,
             ]);
 
             foreach ($this->cart as $cart) {
@@ -160,7 +177,7 @@ class Pos extends Component
                 $stock->save();
             }
 
-            $tipopago = Vnttipopago::find($this->selTipoID);
+
 
             $pago = Vntpago::create([
                 "fechahora" => date('Y-m-d H:i:s'),
@@ -175,6 +192,31 @@ class Pos extends Component
 
             return redirect()->route('pos')->with('success', 'Venta realizada con exito!');
         } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->emit('errorOK', $th->getMessage());
+        }
+    }
+
+    public function acuenta($cliente_id)
+    {
+        DB::beginTransaction();
+        try {
+            foreach ($this->cart as $cart) {
+                $acuenta = Acuenta::create([
+                    'producto_id' => $cart[0],
+                    'cantidad' => $cart[3],
+                    'cliente_id' => $cliente_id,
+                ]);
+
+                $stock = Stock::where('producto_id', $acuenta->producto_id)->first();
+                $stock->cantidad -= $acuenta->cantidad;
+                $stock->save();
+            }
+            DB::commit();
+
+            return redirect()->route('pos')->with('success', 'Credito aplicado con exito!');
+        } catch (\Throwable $th) {
+
             DB::rollBack();
             $this->emit('errorOK', $th->getMessage());
         }

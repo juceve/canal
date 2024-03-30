@@ -18,10 +18,10 @@ class ContexturaController extends Controller
      */
     public function index()
     {
-        $contexturas = Contextura::paginate();
+        $contexturas = Contextura::all();
 
         return view('contextura.index', compact('contexturas'))
-            ->with('i', (request()->input('page', 1) - 1) * $contexturas->perPage());
+            ->with('i', 0);
     }
 
     /**

@@ -18,10 +18,10 @@ class HorarioservicioController extends Controller
      */
     public function index()
     {
-        $horarioservicios = Horarioservicio::paginate();
+        $horarioservicios = Horarioservicio::all();
 
         return view('horarioservicio.index', compact('horarioservicios'))
-            ->with('i', (request()->input('page', 1) - 1) * $horarioservicios->perPage());
+            ->with('i', 0);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Contextura;
+use App\Models\Cuenta;
 use App\Models\Genero;
 use App\Models\Modalidadservicio;
 use App\Models\Modimpresion;
@@ -131,15 +132,22 @@ class VariosSeeder extends Seeder
             'factor' => 0,
         ]);
 
-        // Tiposervicio::create([
-        //     'nombre' => 'Tipo Servicio 1',
-        // ]);
-        // Tiposervicio::create([
-        //     'nombre' => 'Tipo Servicio 2',
-        // ]);
-        // Tiposervicio::create([
-        //     'nombre' => 'Tipo Servicio 3',
-        // ]);
+        Cuenta::create([
+            'nombre' => 'Compras productos',
+            'tipo' => 'EGRESO',
+        ]);
+        Cuenta::create([
+            'nombre' => 'Compras insumos',
+            'tipo' => 'EGRESO',
+        ]);
+        Cuenta::create([
+            'nombre' => 'Venta productos',
+            'tipo' => 'INGRESO',
+        ]);
+        Cuenta::create([
+            'nombre' => 'Venta suscripcion',
+            'tipo' => 'INGRESO',
+        ]);
 
         Modalidadservicio::create([
             'nombre' => 'Dias',

@@ -11,9 +11,21 @@ Nueva Contextura
 
             @includeif('partials.errors')
 
-            <div class="card card-default">
-                <div class="card-header">
-                    <span class="card-title">Nueva Contextura</span>
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+
+                        <span id="card_title">
+                            <strong>Nueva Contextura</strong>
+                        </span>
+
+                        <div class="float-right">
+                            <a href="{{ route('contexturas.index') }}" class="btn btn-secondary btn-sm float-right"
+                                data-placement="left">
+                                <i class="fas fa-arrow-left"></i> Volver
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('contexturas.store') }}" role="form"

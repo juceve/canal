@@ -357,7 +357,7 @@
             verificarAncho();
             var table = $('.dataTable1').DataTable({
                 language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+                  url: '{{asset("plugins/es-ES.json")}}',
                 },
                 pageLength: 5,
                 lengthMenu: [

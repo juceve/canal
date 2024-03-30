@@ -12,7 +12,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($suscripciones as $item)
+                @forelse ($suscripciones as $item)
                 <tr>
                     <td>{{$i++}}</td>
                     <td>{{$item->cliente?$item->cliente->nombre:"NULL"}}</td>
@@ -23,7 +23,17 @@
                     </td>
                     <td></td>
                 </tr>
-                @endforeach
+
+                @empty
+
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <i>No se encontraron resultados.</i>
+                    </td>
+                </tr>
+
+                @endforelse
+
             </tbody>
         </table>
     </div>

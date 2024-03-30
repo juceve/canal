@@ -1,0 +1,5 @@
+CREATE VIEW vwacuentas AS
+SELECT c.id, c.nombre, SUM(p.precio) importe FROM acuentas a
+INNER JOIN productos p ON p.id = a.producto_id
+INNER JOIN clientes c ON c.id = a.cliente_id
+GROUP BY c.id, c.nombre

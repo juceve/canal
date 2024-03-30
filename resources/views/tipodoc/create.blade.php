@@ -1,30 +1,43 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ __('Create') }} Tipodoc
+Nuevo Tipo Documento
 @endsection
 
 @section('content')
-    <section class="content container-fluid">
-        <div class="row">
-            <div class="col-md-12">
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
 
-                @includeif('partials.errors')
+            @includeif('partials.errors')
 
-                <div class="card card-default">
-                    <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Tipodoc</span>
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+
+                        <span id="card_title">
+                            <strong>Nuevo Tipo Documento</strong>
+                        </span>
+
+                        <div class="float-right">
+                            <a href="{{ route('tipodocs.index') }}" class="btn btn-secondary btn-sm float-right"
+                                data-placement="left">
+                                <i class="fas fa-arrow-left"></i> Volver
+                            </a>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('tipodocs.store') }}"  role="form" enctype="multipart/form-data">
-                            @csrf
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('tipodocs.store') }}" role="form"
+                        enctype="multipart/form-data">
+                        @csrf
 
-                            @include('tipodoc.form')
+                        @include('tipodoc.form')
 
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 @endsection

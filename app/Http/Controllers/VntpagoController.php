@@ -18,10 +18,10 @@ class VntpagoController extends Controller
      */
     public function index()
     {
-        $vntpagos = Vntpago::paginate();
+        $vntpagos = Vntpago::all();
 
         return view('vntpago.index', compact('vntpagos'))
-            ->with('i', (request()->input('page', 1) - 1) * $vntpagos->perPage());
+            ->with('i', 0);
     }
 
     /**

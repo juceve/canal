@@ -14,7 +14,7 @@
             {!! $errors->first('nombre', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group mb-3">
-            {{ Form::label('descripcion') }}
+            {{ Form::label('descripción') }}
             {{ Form::text('descripcion', $producto->descripcion, ['class' => 'form-control' .
             ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion']) }}
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</div>') !!}
@@ -26,7 +26,7 @@
             {!! $errors->first('precio', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group mb-3">
-            {{ Form::label('categoria_id') }}
+            {{ Form::label('categoria') }}
 
             {!! Form::select('categoria_id', $categorias, $producto->categoria_id?$producto->categoria_id:null, ['class'
             => 'form-control' .

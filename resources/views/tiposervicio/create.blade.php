@@ -11,9 +11,21 @@ Nuevo Tipo Servicio
 
             @includeif('partials.errors')
 
-            <div class="card card-default">
-                <div class="card-header">
-                    <span class="card-title">Nuevo Tipo Servicio</span>
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+
+                        <span id="card_title">
+                            <strong>Nuevo Tipo Servicio</strong>
+                        </span>
+
+                        <div class="float-right">
+                            <a href="{{ route('tiposervicios.index') }}" class="btn btn-secondary btn-sm float-right"
+                                data-placement="left">
+                                <i class="fas fa-arrow-left"></i> Volver
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('tiposervicios.store') }}" role="form"

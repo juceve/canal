@@ -5,8 +5,10 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\ContexturaController;
 use App\Http\Controllers\CouchController;
+use App\Http\Controllers\CuentaController;
 use App\Http\Controllers\FeriadoController;
 use App\Http\Controllers\ImpresionController;
+use App\Http\Controllers\MovimientoController;
 use App\Http\Controllers\ObjetivoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\RoleController;
@@ -17,6 +19,7 @@ use App\Http\Controllers\TiposervicioController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VntventaController;
 use App\Http\Controllers\ZonaController;
+use App\Http\Livewire\Acuentacli;
 use App\Http\Livewire\Fotosclientes;
 use App\Http\Livewire\Horarioservicios;
 use App\Http\Livewire\Impresiones\Recibosuscripcion;
@@ -56,6 +59,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('servicios/horarios/{servicio_id}', Horarioservicios::class)->middleware('can:servicios.edit')->name('servicios.horarios');
     Route::get('admin/puntoventa', Pos::class)->name('pos');
     Route::get('admin/licencias-cliente/{cliente_id}', LicenciasCliente::class)->name('licenciascliente');
+    Route::get('admin/creditos', Acuentacli::class)->name('acuentas');
 
     Route::resource('admin/users', UserController::class)->names('users');
     Route::resource('admin/roles', RoleController::class)->middleware('auth')->names('admin.roles');
@@ -70,6 +74,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('admin/ventas', VntventaController::class)->names('vntventas');
     Route::resource('admin/feriados', FeriadoController::class)->names('feriados');
     Route::resource('admin/couches', CouchController::class)->names('couches');
+    Route::resource('admin/movimientos', MovimientoController::class)->names('movimientos');
+    Route::resource('admin/cuentas', CuentaController::class)->names('cuentas');
 
     Route::resource('admin/categorias', CategoriaController::class)->names('categorias');
     Route::resource('admin/productos', ProductoController::class)->names('productos');
