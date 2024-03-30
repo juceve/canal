@@ -34,6 +34,15 @@
             {!! $errors->first('categoria_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
+        <div class="form-group mb-3">
+            {{ Form::label('Para Venta') }}
+            {!! Form::select('pos', ['1'=>'SI','0'=>'NO'],
+            $producto->pos,['class' => 'form-select' .
+            ($errors->has('pos') ? '
+            is-invalid' : '')]) !!}
+            {!! $errors->first('pos', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+
     </div>
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">Guardar <i class="fas fa-save"></i></button>

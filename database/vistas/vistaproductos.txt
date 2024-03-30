@@ -1,4 +1,4 @@
 CREATE VIEW vw_productos AS
-SELECT p.id, p.codbarras, p.nombre, p.descripcion,p.precio, p.categoria_id,c.nombre categoria,s.cantidad stock FROM productos p
+SELECT p.id, p.codbarras, p.nombre, p.descripcion,p.precio, p.categoria_id,c.nombre categoria,s.cantidad stock,p.pos FROM productos p
 INNER JOIN categorias c ON c.id = p.categoria_id
 INNER JOIN stocks s ON s.producto_id = p.id

@@ -46,6 +46,14 @@ Info Producto
                         <strong>Categoria:</strong>
                         {{ $producto->categoria?$producto->categoria->nombre:"NULL" }}
                     </div>
+                    <div class="form-group mb-3">
+                        <strong>Para Venta:</strong>
+                        @if ($producto->pos)
+                        <span class="badge rounded-pill bg-primary">SI</span>
+                        @else
+                        <span class="badge rounded-pill bg-secondary">NO</span>
+                        @endif
+                    </div>
 
                 </div>
             </div>

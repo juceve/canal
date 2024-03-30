@@ -28,6 +28,7 @@ class Producto extends Model
         'nombre' => 'required',
         'precio' => 'required',
         'categoria_id' => 'required',
+        'pos' => 'required',
     ];
 
     protected $perPage = 20;
@@ -37,7 +38,7 @@ class Producto extends Model
      *
      * @var array
      */
-    protected $fillable = ['codbarras', 'nombre', 'descripcion', 'precio', 'categoria_id'];
+    protected $fillable = ['codbarras', 'nombre', 'descripcion', 'precio', 'categoria_id', 'pos'];
 
 
     /**

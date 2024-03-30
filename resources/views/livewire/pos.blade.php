@@ -24,10 +24,14 @@
                                 aria-selected="false">MAS VENDIDOS</button>
 
                             @forelse ($categorias as $item)
+                            @if ($item->productos->count()>0 && $item->productos->where('pos',1)->count()>0)
+
                             <button class="nav-link" id="nav-{{$item->id}}-tab" data-bs-toggle="tab"
                                 data-bs-target="#nav-{{$item->id}}" type="button" role="tab"
                                 aria-controls="nav-{{$item->id}}"
                                 aria-selected="false">{{substr($item->nombre,0,16)}}</button>
+                            @endif
+
                             @empty
                             <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
                                 data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
@@ -42,6 +46,7 @@
                             <div class="row g-2 mt-1">
 
                                 @foreach ($masVendidos as $prod)
+                                @if ($prod->pos)
                                 <div class="col-6 col-sm-4 col-md-4 col-xl-3 d-grid">
                                     <button class="btn btn-outline-info"
                                         wire:click='seleccionarProducto({{$prod->id}})'>
@@ -53,6 +58,7 @@
                                                 Bs.</strong></small>
                                     </button>
                                 </div>
+                                @endif
                                 @endforeach
 
 
@@ -63,6 +69,8 @@
                             aria-labelledby="nav-{{$item->id}}-tab" tabindex="0">
                             <div class="row g-2 mt-1">
                                 @foreach ($item->vwproductos as $prod)
+
+                                @if ($prod->pos)
                                 <div class="col-6 col-sm-4 col-md-4 col-xl-3 d-grid">
                                     <button class="btn btn-outline-primary"
                                         wire:click='seleccionarProducto({{$prod->id}})'>
@@ -74,6 +82,8 @@
                                                 Bs.</strong></small>
                                     </button>
                                 </div>
+                                @endif
+
                                 @endforeach
 
                             </div>
