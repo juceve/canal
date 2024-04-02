@@ -12,11 +12,18 @@ Dashboard
     </div>
 
     <hr>
-    <div class="row mt-3">
-        <div class="col-12 col-xl-7">
+    <div class="row mt-3 g-1">
+        <div class="col-12 col-xl-8">
+            <div class="card">
+                <div class="card-body" style="font-size: 12px;">
+                    @livewire('proxvencimientosusc')
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-xl-4">
             <div class="card">
                 <div class="card-body">
-                    @livewire('proxvencimientosusc')
+                    @livewire('stocksminimo')
                 </div>
             </div>
         </div>

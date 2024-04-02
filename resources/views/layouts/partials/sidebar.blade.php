@@ -77,7 +77,11 @@
             </a>
             <div class="collapse" id="mantenimiento">
                 <ul class="nav sub-menu">
-
+                    @can('movimientos.index')
+                    <li class="nav-item">
+                        <a href="{{ route('movimientos.index') }}" class="nav-link">Movimientos</a>
+                    </li>
+                    @endcan
                     @can('clientes.index')
                     <li class="nav-item">
                         <a href="{{ route('clientes.index') }}" class="nav-link">Clientes</a>
@@ -89,26 +93,16 @@
                         <a href="{{ route('servicios.index') }}" class="nav-link">Servicios</a>
                     </li>
                     @endcan
-
+                    @can('productos.index')
+                    <li class="nav-item">
+                        <a href="{{ route('productos.index') }}" class="nav-link">Productos</a>
+                    </li>
+                    @endcan
                     @can('couches.index')
                     <li class="nav-item">
                         <a href="{{ route('couches.index') }}" class="nav-link">Couches</a>
                     </li>
                     @endcan
-
-                    @can('users.index')
-                    <li class="nav-item">
-                        <a href="{{ route('users.index') }}" class="nav-link">Usuarios</a>
-                    </li>
-                    @endcan
-
-                    @can('movimientos.index')
-                    <li class="nav-item">
-                        <a href="{{ route('movimientos.index') }}" class="nav-link">Movimientos</a>
-                    </li>
-                    @endcan
-
-
                 </ul>
             </div>
         </li>
@@ -148,13 +142,19 @@
                         <a href="{{ route('categorias.index') }}" class="nav-link">Categorias Prod.</a>
                     </li>
                     @endcan
-                    @can('productos.index')
-                    <li class="nav-item">
-                        <a href="{{ route('productos.index') }}" class="nav-link">Productos</a>
-                    </li>
-                    @endcan
+
 
                     <li class="nav-item nav-category">SISTEMA</li>
+                    @can('users.index')
+                    <li class="nav-item">
+                        <a href="{{ route('users.index') }}" class="nav-link">Usuarios</a>
+                    </li>
+                    @endcan
+                    @can('admin.roles.index')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.roles.index') }}" class="nav-link">Roles y Permisos</a>
+                    </li>
+                    @endcan
                     @can('cuentas.index')
                     <li class="nav-item">
                         <a href="{{ route('cuentas.index') }}" class="nav-link">Cuentas</a>
@@ -164,11 +164,6 @@
 
                     <li class="nav-item">
                         <a href="{{ route('feriados.index') }}" class="nav-link">Feriados</a>
-                    </li>
-                    @endcan
-                    @can('admin.roles.index')
-                    <li class="nav-item">
-                        <a href="{{ route('admin.roles.index') }}" class="nav-link">Roles y Permisos</a>
                     </li>
                     @endcan
                     @can('tipodocs.index')

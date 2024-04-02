@@ -27,7 +27,7 @@ Listado Suscripciones
 
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover dataTable">
+                        <table class="table table-striped table-hover dataTableD">
                             <thead class="thead table-primary">
                                 <tr>
                                     <th>No</th>

@@ -26,12 +26,14 @@ class Listadoventas extends Component
             $ventas = Vntventa::where([
                 ["fecha", ">=", $this->fechaI],
                 ["fecha", "<=", $this->fechaF],
+                ["observaciones", "VENTA POS"],
                 ["status", $this->estado]
             ])->get();
         } else {
             $ventas = Vntventa::where([
                 ["fecha", ">=", $this->fechaI],
-                ["fecha", "<=", $this->fechaF]
+                ["fecha", "<=", $this->fechaF],
+                ["observaciones", "VENTA POS"],
             ])->get();
         }
 

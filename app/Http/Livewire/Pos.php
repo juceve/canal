@@ -146,7 +146,7 @@ class Pos extends Component
             $venta = Vntventa::create([
                 'user_id' => Auth::user()->id,
                 'fecha' => date('Y-m-d'),
-                'cliente' => "PREDETERMINADO",
+                'cliente' => "CLIENTE POS",
                 'observaciones' => "VENTA POS",
                 'importe' => $this->total * $tipopago->factor,
                 'vntestadopago_id' => 2

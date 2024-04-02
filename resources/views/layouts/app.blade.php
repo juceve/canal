@@ -135,7 +135,7 @@
         $(document).ready(() => {
             $('.dataTable').dataTable({
                 language: {
-                    url: '{{asset("plugins/")}}',
+                    url: '{{asset("plugins/es-ES.json")}}',
                 },
             });
             $('.dataTableD').dataTable({
