@@ -98,7 +98,7 @@ Movimientos
                     </div>
                 </div>
             </div>
-            {!! $movimientos->links() !!}
+
         </div>
     </div>
 </div>

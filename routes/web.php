@@ -10,6 +10,7 @@ use App\Http\Controllers\FeriadoController;
 use App\Http\Controllers\ImpresionController;
 use App\Http\Controllers\MovimientoController;
 use App\Http\Controllers\ObjetivoController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ServicioController;
@@ -26,6 +27,7 @@ use App\Http\Livewire\Impresiones\Recibosuscripcion;
 use App\Http\Livewire\LicenciasCliente;
 use App\Http\Livewire\Pos;
 use App\Http\Livewire\Pruebas;
+use App\Http\Livewire\RptIngresosEgresos;
 use App\Http\Livewire\Vntsuscripciones;
 
 use Illuminate\Support\Facades\Auth;
@@ -82,9 +84,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('admin/compras', CompraController::class)->names('compras');
     Route::post('admin/compras/{id}/anular', [CompraController::class, 'anular'])->name('compras.anular');
 
-
-
-
+    Route::get('admin/reporte/ingresos-egresos', RptIngresosEgresos::class)->name('rptingresosegresos');
+    Route::get('admin/pdf/ingresos-egresos/{data?}', [PdfController::class, 'ingresosegresos'])->name('pdf.ingresosegresos');
 
     Route::get('pruebas', Pruebas::class)->name('pruebas');
 });

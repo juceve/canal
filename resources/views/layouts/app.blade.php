@@ -213,6 +213,14 @@
             });
         })
 
+        Livewire.on('dataTable',()=>{
+            $('.dataTable').dataTable({
+                language: {                    
+                    url: '{{asset("plugins/es-ES.json")}}',
+                },
+            });
+        })
+
         Livewire.on('successL', msg => {
             const Toast = Swal.mixin({
                 toast: true,

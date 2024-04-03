@@ -106,5 +106,7 @@ class RoleSeeder extends Seeder
 
         Permission::create(['name' => 'creditos.index',  'grupo' => 'CREDITOS', 'descripcion' => 'Ver listado'])->assignRole([$role]);
         Permission::create(['name' => 'creditos.create',  'grupo' => 'CREDITOS', 'descripcion' => 'Crear'])->assignRole([$role]);
+
+        Permission::create(['name' => 'rptingresosegresos',  'grupo' => 'REPORTES', 'descripcion' => 'Ingresos - Egresos'])->assignRole([$role]);
     }
 }

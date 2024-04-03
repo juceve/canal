@@ -1,0 +1,3 @@
+CREATE VIEW vwmovimientos AS
+SELECT m.id, m.fecha, m.glosa, m.model_id,m.model_type,m.importe,m.user_id,m.`status`,m.cuenta_id,c.nombre cuenta,c.tipo FROM movimientos m
+INNER JOIN cuentas c ON c.id = m.cuenta_id

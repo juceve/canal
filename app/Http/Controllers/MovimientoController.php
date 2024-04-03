@@ -19,10 +19,10 @@ class MovimientoController extends Controller
      */
     public function index()
     {
-        $movimientos = Movimiento::paginate();
+        $movimientos = Movimiento::all();
 
         return view('movimiento.index', compact('movimientos'))
-            ->with('i', (request()->input('page', 1) - 1) * $movimientos->perPage());
+            ->with('i', 0);
     }
 
     /**

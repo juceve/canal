@@ -106,6 +106,23 @@
                 </ul>
             </div>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#reportes" role="button" aria-expanded="false"
+                aria-controls="reportes">
+                <i class="link-icon" data-feather="pie-chart"></i>
+                <span class="link-title">Reportes</span>
+                <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse" id="reportes">
+                <ul class="nav sub-menu">
+                    @can('rptingresosegresos')
+                    <li class="nav-item">
+                        <a href="{{ route('rptingresosegresos') }}" class="nav-link">Ingresos - Egresos</a>
+                    </li>
+                    @endcan
+                </ul>
+            </div>
+        </li>
         <li class="nav-item nav-category">SISTEMA</li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#paramentros" role="button" aria-expanded="false"
