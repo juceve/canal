@@ -23,6 +23,7 @@
                     <td align="center" style="width: 60px;"><strong>ID</strong></td>
                     <td align="center" style="width: 100px;"><strong>FECHA</strong></td>
                     <td><strong>DETALLE</strong></td>
+                    <td><strong>CUENTA</strong></td>
                     <td align="right" style="width: 80px;"><strong>IMPORTE</strong></td>
                 </tr>
             </thead>
@@ -33,11 +34,12 @@
                     <td align="center">{{$item->id}}</td>
                     <td align="center">{{$item->fecha}}</td>
                     <td>{{$item->glosa}}</td>
+                    <td>{{strtoupper($item->cuenta)}}</td>
                     <td align="right">{{number_format($item->importe,2,'.')}}</td>
                 </tr>
                 @endforeach
                 <tr class="bg-warning">
-                    <td colspan="3" align="right"><strong>TOTAL INGRESOS:</strong></td>
+                    <td colspan="4" align="right"><strong>TOTAL INGRESOS:</strong></td>
                     <td align="right">
                         <strong>{{number_format($movimientos->where('tipo','INGRESO')->sum('importe'),2,'.')}}</strong>
                     </td>
@@ -53,6 +55,7 @@
                     <td align="center" style="width: 60px;"><strong>ID</strong></td>
                     <td align="center" style="width: 100px;"><strong>FECHA</strong></td>
                     <td><strong>DETALLE</strong></td>
+                    <td><strong>CUENTA</strong></td>
                     <td align="right" style="width: 80px;"><strong>IMPORTE</strong></td>
                 </tr>
             </thead>
@@ -63,11 +66,12 @@
                     <td align="center">{{$item->id}}</td>
                     <td align="center">{{$item->fecha}}</td>
                     <td>{{$item->glosa}}</td>
+                    <td>{{strtoupper($item->cuenta)}}</td>
                     <td align="right">{{number_format($item->importe,2,'.')}}</td>
                 </tr>
                 @endforeach
                 <tr class="bg-warning">
-                    <td colspan="3" align="right"><strong>TOTAL EGRESOS:</strong></td>
+                    <td colspan="4" align="right"><strong>TOTAL EGRESOS:</strong></td>
                     <td align="right">
                         <strong>{{number_format($movimientos->where('tipo','EGRESO')->sum('importe'),2,'.')}}</strong>
                     </td>

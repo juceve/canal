@@ -90,6 +90,11 @@
                 </table>
             </div>
             <div class="form-group mb-3">
+                <label for="">Observaciones</label>
+                <textarea class="form-control" wire:model.defer="observaciones" rows="2"
+                    placeholder="Observaciones de la compra (Opcional)"></textarea>
+            </div>
+            <div class="form-group mb-3">
                 <button class="btn btn-primary" wire:click='actualizar'>Guardar Cambios <i
                         class="fas fa-save"></i></button>
             </div>

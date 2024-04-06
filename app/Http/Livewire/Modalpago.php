@@ -56,7 +56,7 @@ class Modalpago extends Component
                 'importe' => $this->arrParamentros[3] * $tipo->factor,
                 'observaciones' => $this->observaciones,
                 'vntestadopago_id' => 1,
-                'status' => 1,
+                'status' => 2,
             ]);
 
             $movimiento = Movimiento::create([

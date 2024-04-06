@@ -9,7 +9,8 @@
         </div>
         <div class="form-group mb-3">
             {{ Form::label('tipo') }}
-            {!! Form::select('tipo', ['INGRESO'=>'INGRESO','EGRESO'=>'EGRESO'], $cuenta->tipo, ['class' => 'form-select'
+
+            {!! Form::select('tipo', $options, $cuenta->tipo, ['class' => 'form-select'
             . ($errors->has('tipo') ? ' is-invalid' :
             ''), 'placeholder' => 'Seleccione un Tipo']) !!}
 

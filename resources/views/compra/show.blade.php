@@ -46,8 +46,12 @@ Info Compra
                         <span class="badge rounded-pill bg-secondary">Anulado</span>
                         @endif
                     </div>
+                    <div class="form-group mb-3">
+                        <strong>Observaciones:</strong>
+                        {{$compra->movimiento($compra->id)?$compra->movimiento($compra->id)->observaciones:"N/A"}}
+                    </div>
                     <hr>
-                    {{-- @if ($compra->estado) --}}
+
                     <h5 class="mb-2">Detalle de la Compra</h5>
                     <table class="table table-bordered">
                         <thead>

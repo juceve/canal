@@ -39,6 +39,10 @@ Info Movimiento
                         <strong>Glosa:</strong>
                         {{ $movimiento->glosa }}
                     </div>
+                    <div class="form-group mb-3">
+                        <strong>observaciones:</strong>
+                        {{ $movimiento->observaciones }}
+                    </div>
 
                     <div class="form-group mb-3">
                         <strong>Cuenta:</strong>
@@ -47,16 +51,7 @@ Info Movimiento
 
                     <div class="form-group mb-3">
                         <strong>Tipo Cuenta:</strong>
-                        @if ($movimiento->cuenta)
-                        @if ($movimiento->cuenta->tipo=="INGRESO")
-                        <span class="badge rounded-pill bg-success">INGRESO <i class="fas fa-arrow-left"></i></span>
-                        @else
-                        <span class="badge rounded-pill bg-warning text-dark">EGRESO <i
-                                class="fas fa-arrow-right"></i></span>
-                        @endif
-                        @else
-                        <span class="badge rounded-pill bg-secondary">NULL</span>
-                        @endif
+                        {{$movimiento->cuenta->tipo}}
 
                     </div>
 
@@ -73,7 +68,7 @@ Info Movimiento
                         @if ($movimiento->status)
                         <span class="badge rounded-pill bg-primary">Activo</span>
                         @else
-                        <span class="badge rounded-pill bg-secondary">Inactivo</span>
+                        <span class="badge rounded-pill bg-secondary">Anulado</span>
                         @endif
                     </div>
 

@@ -281,9 +281,9 @@
         </div>
         <div class="modal-body">
           <div class="table-responsive">
-            <table class="table table-hover dataTableLite" style="vertical-align: middle">
+            <table class="table table-hover dataTable5D" style="vertical-align: middle">
               <thead>
-                <tr>
+                <tr class="table-secondary">
                   <th>ID</th>
                   <th>NOMBRE</th>
                   <th>TIPO DOC</th>

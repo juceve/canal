@@ -11,35 +11,21 @@
         @endcan
 
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ventas" role="button" aria-expanded="false"
-                aria-controls="ventas">
+            <a class="nav-link" data-bs-toggle="collapse" href="#pos" role="button" aria-expanded="false"
+                aria-controls="pos">
                 <i class="link-icon" data-feather="shopping-cart"></i>
-                <span class="link-title">Ventas</span>
+                <span class="link-title">Punto de Venta</span>
                 <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
-            <div class="collapse" id="ventas">
+            <div class="collapse" id="pos">
                 <ul class="nav sub-menu">
-                    <li class="nav-item nav-category">PRODUCTOS</li>
+                    {{-- <li class="nav-item nav-category">PRODUCTOS</li> --}}
                     @can('pos.create')
                     <li class="nav-item">
-                        <a href="{{ route('pos') }}" class="nav-link">Punto de Venta</a>
+                        <a href="{{ route('pos') }}" class="nav-link">Productos</a>
                     </li>
-                    @endcan
-                    @can('pos.index')
                     <li class="nav-item">
-                        <a href="{{ route('vntventas.index') }}" class="nav-link">Listado</a>
-                    </li>
-                    @endcan
-
-                    <li class="nav-item nav-category">SUSCRIPCIONES</li>
-                    @can('pos.create')
-                    <li class="nav-item">
-                        <a href="{{ route('ventas.suscripciones') }}" class="nav-link">Punto de Venta</a>
-                    </li>
-                    @endcan
-                    @can('pos.index')
-                    <li class="nav-item">
-                        <a href="{{ route('suscripciones.index') }}" class="nav-link">Listado</a>
+                        <a href="{{ route('ventas.suscripciones') }}" class="nav-link">Suscripciones</a>
                     </li>
                     @endcan
                 </ul>
@@ -47,7 +33,7 @@
         </li>
         @can('creditos.index')
         <li class="nav-item">
-            <a href="/admin/creditos" class="nav-link">
+            <a href="{{route('acuentas')}}" class="nav-link">
                 <i class="link-icon" data-feather="archive"></i>
                 <span class="link-title">Créditos</span>
             </a>
@@ -77,6 +63,16 @@
             </a>
             <div class="collapse" id="mantenimiento">
                 <ul class="nav sub-menu">
+                    @can('pos.index')
+                    <li class="nav-item">
+                        <a href="{{ route('vntventas.index') }}" class="nav-link">Ventas</a>
+                    </li>
+                    @endcan
+                    @can('pos.index')
+                    <li class="nav-item">
+                        <a href="{{ route('suscripciones.index') }}" class="nav-link">Suscripciones</a>
+                    </li>
+                    @endcan
                     @can('movimientos.index')
                     <li class="nav-item">
                         <a href="{{ route('movimientos.index') }}" class="nav-link">Movimientos</a>

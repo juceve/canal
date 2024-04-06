@@ -63,7 +63,7 @@ class Vntsuscripciones extends Component
     public function agregaPedido()
     {
 
-        if ($this->selServicio) {
+        if ($this->selServicio && $this->selHorario) {
             $horario = Horarioservicio::find($this->selHorario);
             $servicio = Servicio::find($this->selServicio);
             $pedido = [];
@@ -79,6 +79,8 @@ class Vntsuscripciones extends Component
                 $subtotal = $item[0]['precio'] * $item[3];
                 $this->totalPedido += $subtotal;
             }
+        } else {
+            $this->emit('alertError', '¡Atencion! Todos los campos deben ser llenados.');
         }
     }
 

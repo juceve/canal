@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('fecha');
             $table->longText('glosa');
+            $table->longText('observaciones')->nullable();
             $table->unsignedBigInteger('model_id')->nullable();
             $table->string('model_type', 125)->nullable();
             $table->foreignId('cuenta_id')->nullable()->constrained()->nullOnDelete();

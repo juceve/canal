@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Compra;
 use App\Models\CompraProducto;
+use App\Models\Movimiento;
 use App\Models\Producto;
 use App\Models\Stock;
 use Illuminate\Support\Facades\Auth;
@@ -17,14 +18,19 @@ class ActualizaCompra extends Component
         $producto_id = "",
         $cantidad = "",
         $precio = "",
+        $observaciones = "",
         $arrProductos = [],
         $total = 0;
-    public $compra, $compraProductos;
+
+
+    public $compra, $compraProductos, $movimiento;
 
     public function mount($compra_id)
     {
         $this->compra = Compra::find($compra_id);
         $this->fecha = $this->compra->fecha;
+        $this->movimiento = $this->compra->movimiento($compra_id);
+        $this->observaciones = $this->movimiento ? $this->movimiento->observaciones : "";
 
         $this->compraProductos = $this->compra->compraProductos;
         // dd($this->compraProductos);
@@ -109,6 +115,23 @@ class ActualizaCompra extends Component
                     $stock->cantidad += $producto[2];
                     $stock->save();
                 }
+                if ($this->movimiento) {
+                    $this->movimiento->observaciones = $this->observaciones;
+                    $this->movimiento->save();
+                } else {
+                    $movimiento = Movimiento::create([
+                        'fecha' => date('Y-m-d'),
+                        'user_id' => Auth::user()->id,
+                        'importe' => $this->total,
+                        'observaciones' => $this->observaciones,
+                        'glosa' => "COMPRA PRODUCTOS",
+                        'cuenta_id' => 1,
+                        'model_id' => $this->compra->id,
+                        'model_type' => Compra::class,
+                    ]);
+                }
+
+
 
                 DB::commit();
                 $this->reset(['arrProductos', 'total', 'fecha']);
@@ -118,6 +141,7 @@ class ActualizaCompra extends Component
                 $this->fecha = date('Y-m-d');
             } catch (\Throwable $th) {
                 DB::rollBack();
+                // $this->emit('errorOK', $th->getMessage());
                 $this->emit('errorOK', 'Ha ocurrido un error.');
             }
         } else {

@@ -41,7 +41,7 @@ class Movimiento extends Model
      *
      * @var array
      */
-    protected $fillable = ['fecha', 'glosa', 'model_id', 'model_type', 'cuenta_id', 'importe', 'user_id', 'status'];
+    protected $fillable = ['fecha', 'glosa', 'observaciones', 'model_id', 'model_type', 'cuenta_id', 'importe', 'user_id', 'status'];
 
 
     /**
@@ -58,5 +58,10 @@ class Movimiento extends Model
     public function user()
     {
         return $this->hasOne('App\Models\User', 'id', 'user_id');
+    }
+
+    public function modelo()
+    {
+        return $this->model_type::find($this->model_id);
     }
 }

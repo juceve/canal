@@ -30,4 +30,15 @@ class PdfController extends Controller
             // return view('pdf.ingresos-egresos', compact('movimientos'));
         }
     }
+
+    public function movimientos()
+    {
+        $parametros = Session::get('parametros');
+        $movimientos = Session::get('contenedor1');
+        $i = 0;
+        $pdf = Pdf::loadView('pdf.movimientos', compact('movimientos', 'parametros', 'i'))
+            ->setPaper('letter', 'portrait');
+
+        return $pdf->stream();
+    }
 }

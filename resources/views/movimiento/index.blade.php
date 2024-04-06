@@ -25,7 +25,8 @@ Movimientos
             <div class="card">
 
                 <div class="card-body">
-                    <div class="table-responsive">
+                    @livewire('listado-movimientos')
+                    {{-- <div class="table-responsive">
                         <table class="table table-striped table-hover dataTableD text-uppercase">
                             <thead class="thead table-info">
                                 <tr>
@@ -33,7 +34,7 @@ Movimientos
 
                                     <th class="text-center">Fecha</th>
                                     <th>Glosa</th>
-                                    <th class="text-center">Tipo Cuenta</th>
+                                    <th>Cuenta</th>
                                     <th class="text-end">Importe</th>
                                     <th class="text-center">Estado</th>
 
@@ -47,21 +48,8 @@ Movimientos
 
                                     <td class="text-center">{{ $movimiento->fecha }}</td>
                                     <td>{{ substr($movimiento->glosa,0,30) }}</td>
-                                    <td class="text-center">
-                                        @if ($movimiento->cuenta)
-                                        @if ($movimiento->cuenta->tipo=="INGRESO")
-                                        <span class="badge rounded-pill bg-success">INGRESO <i
-                                                class="fas fa-arrow-left"></i></span>
-                                        @else
-                                        <span class="badge rounded-pill bg-warning text-dark">EGRESO <i
-                                                class="fas fa-arrow-right"></i></span>
-                                        @endif
-                                        @else
-                                        <span class="badge rounded-pill bg-secondary">NULL</span>
-                                        @endif
-
-
-                                        {{-- {{ $movimiento->cuenta?$movimiento->cuenta->tipo:"NULL" }} --}}
+                                    <td>
+                                        {{$movimiento->cuenta->nombre}}
                                     </td>
                                     <td class="text-end">{{ $movimiento->importe }}</td>
                                     <td class="text-center">
@@ -95,7 +83,7 @@ Movimientos
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 

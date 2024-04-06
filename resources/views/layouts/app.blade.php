@@ -50,6 +50,7 @@
     <link rel="stylesheet" href="{{asset('plugins/alertify/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/alertify/default.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/alertify/semantic.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/scroll.css')}}">
     @yield('css')
     @livewireStyles
 </head>
@@ -104,11 +105,11 @@
     <!-- endinject -->
 
     <!-- Plugin js for this page -->
-    <script src="{{ asset('admin/assets/vendors/chartjs/Chart.min.js') }}"></script>
+    <script src="{{ asset('plugins/chartjs/chart.umd.js') }}"></script>
     <script src="{{ asset('admin/assets/vendors/jquery.flot/jquery.flot.js') }}"></script>
     <script src="{{ asset('admin/assets/vendors/jquery.flot/jquery.flot.resize.js') }}"></script>
     <script src="{{ asset('admin/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/vendors/apexcharts/apexcharts.min.js') }}"></script>
+
     <script src="{{ asset('admin/assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('admin/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
     <script src="{{ asset('admin/assets/vendors/select2/select2.min.js')}}"></script>
@@ -121,7 +122,7 @@
     <!-- endinject -->
 
     <!-- Custom js for this page -->
-    <script src="{{ asset('admin/assets/js/dashboard-light.js') }}"></script>
+    {{-- <script src="{{ asset('admin/assets/js/dashboard-light.js') }}"></script> --}}
     <script src="{{ asset('admin/assets/js/datepicker.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -143,6 +144,15 @@
                 language: {                    
                     url: '{{asset("plugins/es-ES.json")}}',
                 },
+            });
+
+            $('.dataTable5D').dataTable({
+                order: [[0, 'desc']],
+                language: {                    
+                    url: '{{asset("plugins/es-ES.json")}}',
+                },
+                pageLength : 5,
+                lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']]
             });
         })
 
@@ -218,6 +228,17 @@
                 language: {                    
                     url: '{{asset("plugins/es-ES.json")}}',
                 },
+            });
+        })
+        
+        Livewire.on('dataTable5D',()=>{
+            $('.dataTable5D').dataTable({
+                order: [[0, 'desc']],
+                language: {                    
+                    url: '{{asset("plugins/es-ES.json")}}',
+                },
+                pageLength : 5,
+                lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']]
             });
         })
 

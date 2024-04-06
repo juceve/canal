@@ -41,6 +41,9 @@ Info Suscripción
                             <div class="form-group">
                                 <strong>ID Venta:</strong>
                                 {{ $suscripcione->vntventa_id }}
+                                <a class="btn btn-sm btn-outline-info"
+                                    href="{{route('vntventas.show',$suscripcione->vntventa_id)}}"><i
+                                        class="fas fa-eye"></i> Ver</a>
                             </div>
                         </div>
                         <div class="col-12 col-md-6 mb-3">

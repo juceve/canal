@@ -12,6 +12,26 @@ Dashboard
     </div>
 
     <hr>
+    <div class="row">
+        <div class="col-12 col-xl-12 grid-margin stretch-card">
+            <div class="card overflow-hidden">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-baseline mb-4 mb-md-3">
+                        <h6 class="card-title mb-0">SUSCRIPCIONES DEL AÑO</h6>
+
+                    </div>
+                    <div class="row align-items-start">
+                        <p class="text-muted tx-13 mb-3 mb-md-0">Historial de Suscripciones activadas durante la Gestión
+                            {{date('Y')}}
+                        </p>
+                    </div>
+                    <div id="revenueChart">
+                        <canvas id="graficoActivacionSuscripciones" height="50"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- row -->
     <div class="row mt-3 g-1">
         <div class="col-12 col-xl-8">
             <div class="card">
@@ -29,4 +49,39 @@ Dashboard
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+<script>
+    $.ajax({
+    url: "/getDataSuscripciones",
+    method: 'GET',
+    dataType:'json',
+    success:function(data){
+        const meses = data.meses;
+        const cantidades = data.cantidades;    
+
+        const ctx = document.getElementById('graficoActivacionSuscripciones');
+        new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: meses,
+            datasets: [{
+            label: 'Cant. Activaciones',
+            data: cantidades,
+            borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+            y: {
+                beginAtZero: true
+            }
+            }
+        }
+        });
+    }
+    });
+
+    
+</script>
 @endsection

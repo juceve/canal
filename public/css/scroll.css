@@ -1,0 +1,33 @@
+.scrolljvg {
+
+    overflow-y: auto;
+    margin-bottom: 20px;
+    width: calc(100% + 17px);
+}
+
+.scrolljvg::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.scrolljvg::-webkit-scrollbar:vertical {
+    width: 10px;
+}
+
+.scrolljvg::-webkit-scrollbar-button:increment,
+.scrolljvg::-webkit-scrollbar-button {
+    display: none;
+}
+
+.scrolljvg::-webkit-scrollbar:horizontal {
+    height: 5px;
+}
+
+.scrolljvg::-webkit-scrollbar-thumb {
+    background-color: #0e0e0e15;
+    border-radius: 20px;
+    border: .5px #f1f2f3;
+}
+
+.scrolljvg::-webkit-scrollbar-track {
+    border-radius: 10px;
+}

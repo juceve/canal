@@ -20,7 +20,7 @@ Información de la Venta
                         </span>
 
                         <div class="float-right">
-                            <a href="{{ route('vntventas.index') }}" class="btn btn-secondary btn-sm float-right"
+                            <a href="javascript:history.back()" class="btn btn-secondary btn-sm float-right"
                                 data-placement="left">
                                 <i class="fas fa-arrow-left"></i> Volver
                             </a>
@@ -56,6 +56,13 @@ Información de la Venta
                             </div>
                         </div>
 
+                        <div class="col-12 col-md-6 mb-2">
+                            <div class="form-group">
+                                <strong>Tipo Pago:</strong>
+                                {{ $vntventa->vntpagos->first()?$vntventa->vntpagos->first()->vnttipopago->nombre:"NULL"
+                                }}
+                            </div>
+                        </div>
                         <div class="col-12 col-md-6 mb-2">
                             <div class="form-group">
                                 <strong>Estado Pago:</strong>
@@ -94,7 +101,7 @@ Información de la Venta
                             <thead>
                                 <tr class="table-info">
                                     <th class="text-center">ID</th>
-                                    <th class="text-center">PRODUCTO</th>
+                                    <th class="">PRODUCTO</th>
                                     <th class="text-center">CANT.</th>
                                     <th class="text-end">P. UNIT.</th>
                                     <th class="text-end">SUBTOTAL</th>
@@ -104,7 +111,7 @@ Información de la Venta
                                 @foreach ($vntventa->vntdetalleventas as $detalle)
                                 <tr>
                                     <td class="text-center">{{$detalle->id}}</td>
-                                    <td class="text-center">{{$detalle->detalle}}</td>
+                                    <td class="">{{$detalle->detalle}}</td>
                                     <td class="text-center">{{$detalle->cantidad}}</td>
                                     <td class="text-end">{{number_format($detalle->preciounitario,2,'.')}}</td>
                                     <td class="text-end">{{number_format($detalle->subtotal,2,'.')}}</td>

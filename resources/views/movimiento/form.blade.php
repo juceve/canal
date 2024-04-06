@@ -28,6 +28,13 @@
             is-invalid' : ''), 'rows'=>'3', 'placeholder' => 'Glosa']) }}
             {!! $errors->first('glosa', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+        <div class="form-group mb-3">
+            {{ Form::label('observaciones') }}
+            {{ Form::textarea('observaciones', $movimiento->observaciones, ['class' => 'form-control' .
+            ($errors->has('observaciones') ? '
+            is-invalid' : ''), 'rows'=>'3', 'placeholder' => 'Observaciones (Opcional)']) }}
+            {!! $errors->first('observaciones', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
         <div class="row">
             <div class="col-12 col-md-6">
                 <div class="form-group mb-3">
@@ -42,7 +49,7 @@
                 <div class="form-group mb-3">
                     {{ Form::label('Estado') }}
 
-                    {!! Form::select('status', ['1'=>'Activo','0'=>'Inactivo'],
+                    {!! Form::select('status', ['1'=>'Activo','0'=>'Anulado'],
                     $movimiento->status?$movimiento->status:1,['class' => 'form-select' .
                     ($errors->has('status') ? '
                     is-invalid' : '')]) !!}

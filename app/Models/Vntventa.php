@@ -31,13 +31,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Vntventa extends Model
 {
-    
+
     static $rules = [
-		'user_id' => 'required',
-		'fecha' => 'required',
-		'importe' => 'required',
-		'vntestadopago_id' => 'required',
-		'status' => 'required',
+        'user_id' => 'required',
+        'fecha' => 'required',
+        'importe' => 'required',
+        'vntestadopago_id' => 'required',
+        'status' => 'required',
     ];
 
     protected $perPage = 20;
@@ -47,7 +47,7 @@ class Vntventa extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id','fecha','cliente','cliente_id','importe','observaciones','vntestadopago_id','status'];
+    protected $fillable = ['user_id', 'fecha', 'cliente', 'cliente_id', 'importe', 'observaciones', 'vntestadopago_id', 'status'];
 
 
     /**
@@ -57,11 +57,11 @@ class Vntventa extends Model
     {
         return $this->hasOne('App\Models\Cliente', 'id', 'cliente_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-       
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -69,7 +69,7 @@ class Vntventa extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -77,7 +77,7 @@ class Vntventa extends Model
     {
         return $this->hasMany('App\Models\Vntdetalleventa', 'vntventa_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -85,7 +85,7 @@ class Vntventa extends Model
     {
         return $this->hasOne('App\Models\Vntestadopago', 'id', 'vntestadopago_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -93,7 +93,7 @@ class Vntventa extends Model
     {
         return $this->hasMany('App\Models\Vntpago', 'vntventa_id', 'id');
     }
-    
+
     public function suscripciones()
     {
         return $this->hasMany('App\Models\Suscripcione', 'vntventa_id', 'id');

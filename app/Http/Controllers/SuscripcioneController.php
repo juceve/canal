@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Suscripcione;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class SuscripcioneController
@@ -108,4 +109,45 @@ class SuscripcioneController extends Controller
         return redirect()->route('suscripciones.index')
             ->with('success', 'Suscripcione anulada correctamente');
     }
-}
+
+    public function getDataSuscripciones()
+    {
+        $mesesData = [
+            ["mes" => "", "cantidad" => 0],
+            ["mes" => "Enero", "cantidad" => 0],
+            ["mes" => "Febrero", "cantidad" => 0],
+            ["mes" => "Marzo", "cantidad" => 0],
+            ["mes" => "Abril", "cantidad" => 0],
+            ["mes" => "Mayo", "cantidad" => 0],
+            ["mes" => "Junio", "cantidad" => 0],
+            ["mes" => "Julio", "cantidad" => 0],
+            ["mes" => "Agosto", "cantidad" => 0],
+            ["mes" => "Septiembre", "cantidad" => 0],
+            ["mes" => "Octubre", "cantidad" => 0],
+            ["mes" => "Noviembre", "cantidad" => 0],
+            ["mes" => "Diciembre", "cantidad" => 0],
+        ];
+
+
+        $sql2 = "SELECT MONTH(s.created_at) mes, COUNT(*) cantidad, SUM(dv.preciounitario) total FROM suscripciones s
+        INNER JOIN vntventas v ON v.id=s.vntventa_id
+        INNER JOIN vntdetalleventas dv ON dv.vntventa_id=v.id
+        WHERE MONTH(s.created_at) IN (1,2,3,4,5,6,7,8,9,10,11,12)
+        AND YEAR(s.created_at) = " . date('Y') . "
+        GROUP BY MONTH(s.created_at) ORDER BY MONTH(s.created_at)";
+        $resultado2 = DB::select($sql2);
+        $cantidades = [];
+        $meses = [];
+        foreach ($resultado2 as $item) {
+            $mesesData[$item->mes]['cantidad'] = $item->cantidad;
+        }
+        foreach ($mesesData as $item) {
+            // if ($item['mes'] != "") {
+            $meses[] = $item['mes'];
+            $cantidades[] = $item['cantidad'];
+            // }
+        }
+        // dd($mesesData[4]['cantidad']);
+        return response()->json(["meses" => $meses, "cantidades" => $cantidades]);
+    }
+};

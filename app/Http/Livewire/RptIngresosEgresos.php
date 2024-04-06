@@ -23,7 +23,10 @@ class RptIngresosEgresos extends Component
 
     public function render()
     {
-        $this->emit('dataTable');
+        if ($this->resultados) {
+            $this->emit('dataTable5D');
+        }
+
         return view('livewire.rpt-ingresos-egresos')->with('i', 1)->extends('layouts.app');
     }
 

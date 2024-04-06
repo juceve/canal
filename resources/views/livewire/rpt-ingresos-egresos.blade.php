@@ -53,26 +53,28 @@
                 @endif
 
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped dataTable">
+                    <table class="table table-bordered table-striped dataTable5D">
                         <thead>
                             <tr class="table-primary">
-                                <th style="width: 60px;" class="text-center">Nro.</th>
+                                <th style="width: 60px;" class="text-center">ID</th>
                                 <th style="width: 150px;" class="text-center">FECHA</th>
                                 <th>DETALLE</th>
+                                <th>CUENTA</th>
                                 <th style="width: 100px;" class="text-end">TOTAL</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($resultados as $item)
                             <tr>
-                                <td class="text-center">{{$i++}}</td>
+                                <td class="text-center">{{$item->id}}</td>
                                 <td class="text-center">{{$item->fecha}}</td>
                                 <td>{{$item->glosa}}</td>
+                                <td>{{$item->cuenta}}</td>
                                 <td class="text-end">{{number_format($item->importe,2,'.')}}</td>
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="4" class="text-center"><i>No se encontraron resultados.</i></td>
+                                <td colspan="5" class="text-center"><i>No se encontraron resultados.</i></td>
                             </tr>
                             @endforelse
                         </tbody>

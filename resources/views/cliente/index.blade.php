@@ -77,11 +77,14 @@ Clientes
                                                 <a class="dropdown-item"
                                                     href="{{ route('clientes.edit', $cliente->id) }}"><i
                                                         class="fa fa-fw fa-edit"></i> Editar</a>
+                                                <a class="dropdown-item"
+                                                    href="{{ route('datosfisicos', $cliente->id) }}">
+                                                    <i class="fas fa-heartbeat"></i> Datos Físicos</a>
                                                 <a href="{{ route('fotosclientes', $cliente->id) }}"
                                                     class="dropdown-item"><i class="fas fa-image"></i> Fotografias</a>
                                                 <a href="{{ route('clientes.statuschange', $cliente->id) }}"
-                                                    class="dropdown-item"><i class="fas fa-rotate"></i> Cambiar
-                                                    Estado</a>
+                                                    class="dropdown-item"><i class="fas fa-rotate"></i>
+                                                    Activar/Desac.</a>
                                                 @endcan
 
                                                 <form action="{{ route('clientes.destroy', $cliente->id) }}"

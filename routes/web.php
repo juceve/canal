@@ -6,6 +6,7 @@ use App\Http\Controllers\CompraController;
 use App\Http\Controllers\ContexturaController;
 use App\Http\Controllers\CouchController;
 use App\Http\Controllers\CuentaController;
+use App\Http\Controllers\DatosfisicoController;
 use App\Http\Controllers\FeriadoController;
 use App\Http\Controllers\ImpresionController;
 use App\Http\Controllers\MovimientoController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VntventaController;
 use App\Http\Controllers\ZonaController;
 use App\Http\Livewire\Acuentacli;
+use App\Http\Livewire\Datosfisicos;
 use App\Http\Livewire\Fotosclientes;
 use App\Http\Livewire\Horarioservicios;
 use App\Http\Livewire\Impresiones\Recibosuscripcion;
@@ -62,6 +64,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('admin/puntoventa', Pos::class)->name('pos');
     Route::get('admin/licencias-cliente/{cliente_id}', LicenciasCliente::class)->name('licenciascliente');
     Route::get('admin/creditos', Acuentacli::class)->name('acuentas');
+    Route::get('admin/clientes/datosfisicos/{cliente_id}', Datosfisicos::class)->name('datosfisicos');
 
     Route::resource('admin/users', UserController::class)->names('users');
     Route::resource('admin/roles', RoleController::class)->middleware('auth')->names('admin.roles');
@@ -86,6 +89,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('admin/reporte/ingresos-egresos', RptIngresosEgresos::class)->name('rptingresosegresos');
     Route::get('admin/pdf/ingresos-egresos/{data?}', [PdfController::class, 'ingresosegresos'])->name('pdf.ingresosegresos');
+    Route::get('admin/pdf/movimientos', [PdfController::class, 'movimientos'])->name('pdf.movimientos');
 
     Route::get('pruebas', Pruebas::class)->name('pruebas');
+
+    Route::get('/getDataSuscripciones', [SuscripcioneController::class, 'getDataSuscripciones']);
 });

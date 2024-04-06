@@ -69,8 +69,8 @@
                             </button>
                             <div class="dropdown-menu">
 
-                                <a class="dropdown-item" href="{{route('vntventas.show',$venta->id)}}"><i
-                                        class="fas fa-fw fa-eye"></i>
+                                <a class="dropdown-item" href="{{route('vntventas.show',$venta->id)}}"
+                                    target="__blank"><i class="fas fa-fw fa-eye"></i>
                                     Detalles</a>
                                 @can('pos.edit')
                                 <a href="ventas/{{$venta->id}}/edit" class="dropdown-item"><i class="fas fa-edit"></i>

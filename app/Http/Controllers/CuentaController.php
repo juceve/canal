@@ -32,7 +32,9 @@ class CuentaController extends Controller
     public function create()
     {
         $cuenta = new Cuenta();
-        return view('cuenta.create', compact('cuenta'));
+        $options = Cuenta::enumOptions('tipo');
+
+        return view('cuenta.create', compact('cuenta', 'options'));
     }
 
     /**

@@ -21,10 +21,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Compra extends Model
 {
-    
+
     static $rules = [
-		'fecha' => 'required',
-		'estado' => 'required',
+        'fecha' => 'required',
+        'estado' => 'required',
     ];
 
     protected $perPage = 20;
@@ -34,7 +34,7 @@ class Compra extends Model
      *
      * @var array
      */
-    protected $fillable = ['fecha','user_id','estado'];
+    protected $fillable = ['fecha', 'user_id', 'estado'];
 
 
     /**
@@ -44,7 +44,7 @@ class Compra extends Model
     {
         return $this->hasMany('App\Models\CompraProducto', 'compra_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -52,6 +52,10 @@ class Compra extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
-    
 
+    public function movimiento($id)
+    {
+        $movimiento = Movimiento::where([['model_type', Compra::class], ["model_id", $id]])->first();
+        return  $movimiento;
+    }
 }

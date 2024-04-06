@@ -131,6 +131,12 @@ class VariosSeeder extends Seeder
             'icon' => 'money-check',
             'factor' => 0,
         ]);
+        // Vnttipopago::create([
+        //     'nombre' => 'CREDITO',
+        //     'nombrecorto' => 'CR',
+        //     'icon' => 'credit-card',
+        //     'factor' => 1,
+        // ]);
 
         Cuenta::create([
             'nombre' => 'Compras productos',

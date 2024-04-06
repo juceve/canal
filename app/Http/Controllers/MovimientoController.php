@@ -19,10 +19,9 @@ class MovimientoController extends Controller
      */
     public function index()
     {
-        $movimientos = Movimiento::all();
+        // $movimientos = Movimiento::all();
 
-        return view('movimiento.index', compact('movimientos'))
-            ->with('i', 0);
+        return view('movimiento.index');
     }
 
     /**
