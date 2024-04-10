@@ -82,6 +82,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('admin/movimientos', MovimientoController::class)->names('movimientos');
     Route::resource('admin/cuentas', CuentaController::class)->names('cuentas');
 
+    Route::get('users/resetpassword/{id}', [UserController::class, 'resetPassword'])->name('resetpassword');
+
     Route::resource('admin/categorias', CategoriaController::class)->names('categorias');
     Route::resource('admin/productos', ProductoController::class)->names('productos');
     Route::resource('admin/compras', CompraController::class)->names('compras');

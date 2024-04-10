@@ -18,7 +18,7 @@ class RegistroCompra extends Component
         $producto_id = "",
         $cantidad = "",
         $precio = "",
-        $observaciones = "",
+        $glosa = "",
         $arrProductos = [],
         $total = 0;
 
@@ -98,8 +98,8 @@ class RegistroCompra extends Component
                     'fecha' => date('Y-m-d'),
                     'user_id' => Auth::user()->id,
                     'importe' => $this->total,
-                    'observaciones' => $this->observaciones,
-                    'glosa' => "COMPRA PRODUCTOS",
+                    'glosa' => $this->glosa,
+                    'observaciones' => "COMPRA PRODUCTOS",
                     'cuenta_id' => 1,
                     'model_id' => $compra->id,
                     'model_type' => Compra::class,

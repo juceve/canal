@@ -34,14 +34,18 @@ class UserController extends Controller
     {
         request()->validate(User::$rules);
 
+        $passw = obtenerIniciales($request->name) . generarNumeroAleatorio();
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt('12345678'),
+            'password' => bcrypt($passw),
+            'avatar' => 'images/avatar.jpg',
+            'modimpresion_id' => 1,
         ])->assignRole('Operador');
 
         return redirect()->route('users.index')
-            ->with('success', 'Usuario creado correctamente.');
+            ->with('success', 'Usuario creado correctamente. Password: ' . $passw);
     }
 
     public function show($id)
@@ -99,5 +103,18 @@ class UserController extends Controller
 
         return redirect()->route('users.asignaRol', $user)
             ->with('success', 'Roles asignados correctamente');
+    }
+
+    public function resetPassword($id)
+    {
+        $user = User::find($id);
+
+        $passw = obtenerIniciales($user->name) . generarNumeroAleatorio();
+
+        $user->password = bcrypt($passw);
+        $user->save();
+
+        return redirect()->route('users.index')
+            ->with('success', 'Nuevo Password: ' . $passw);
     }
 }

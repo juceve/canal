@@ -79,8 +79,9 @@ Info Cliente
                                 {{ $cliente->fechanacimiento }}
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 mb-3">
-
+                        <div class="col-12 col-md-4 mb-3 d-grid">
+                            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#modalHistorial">Historial de Suscripciones</button>
                         </div>
                     </div>
                 </div>
@@ -157,6 +158,56 @@ Info Cliente
                         </div>
                         @endforeach
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalHistorial" tabindex="-1" aria-labelledby="modalHistorialLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalHistorialLabel">Historial de Suscripciones</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive" style="max-height: 400px;">
+                        <table class="table table-bordered">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>Nro.</th>
+                                    <th>SERVICIO</th>
+                                    <th>INICIO</th>
+                                    <th>FINAL</th>
+                                    {{-- <th>ESTADO</th> --}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($cliente->suscripciones->where('status',1) as $item)
+                                <tr>
+                                    <td>{{$i++}}</td>
+                                    <td>{{$item->servicio->nombre}}</td>
+                                    <td>{{$item->inicio}}</td>
+                                    <td>
+                                        @if ($item->final>=date('Y-m-d')) <span class="badge rounded-pill bg-primary">
+                                            {{$item->final}}</span>
+                                        @else
+                                        <span class="badge rounded-pill bg-secondary">{{$item->final}}</span>
+                                        @endif
+                                    </td>
+                                    {{-- <td>{{$item->status?"ACTIVO":"ANULADO"}}</td> --}}
+                                </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
                 </div>
             </div>
         </div>

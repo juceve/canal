@@ -31,7 +31,7 @@ Compras
                                     <th class="text-center">No</th>
 
                                     <th class="text-center">Fecha</th>
-                                    <th>Usuario</th>
+                                    <th>Glosa</th>
                                     <th class="text-end">Importe Bs.</th>
                                     <th class="text-center">Estado</th>
                                     <th></th>
@@ -46,7 +46,9 @@ Compras
                                     <td class="text-center">{{ ++$i }}</td>
 
                                     <td class="text-center">{{ $compra->fecha }}</td>
-                                    <td>{{ $compra->user?$compra->user->name:'NULL' }}</td>
+                                    <td>{{
+                                        $compra->movimiento($compra->id)?$compra->movimiento($compra->id)->glosa:'NULL'
+                                        }}</td>
                                     <td class="text-end">{{ number_format(importeCompra($compra->id),2,'.') }}</td>
                                     <td class="text-center">
                                         @if ($compra->estado)

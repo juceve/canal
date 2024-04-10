@@ -33,6 +33,7 @@ Listado Suscripciones
                                     <th>No</th>
                                     <th>Cliente</th>
                                     <th>Servicio</th>
+                                    <th>Inicio</th>
                                     <th>Expira</th>
                                     <th>Estado</th>
                                     <th></th>
@@ -45,6 +46,7 @@ Listado Suscripciones
 
                                     <td>{{ $suscripcione->cliente?$suscripcione->cliente->nombre:"NULL" }}</td>
                                     <td>{{ $suscripcione->servicio?$suscripcione->servicio->nombre:"NULL" }}</td>
+                                    <td>{{ $suscripcione->inicio }}</td>
                                     <td>
                                         @if ($suscripcione->final < date('Y-m-d')) <span
                                             class="badge rounded-pill bg-danger">{{$suscripcione->final}}</span>

@@ -11,7 +11,13 @@
             {!! $errors->first('fecha', '<div class="invalid-feedback"></div>') !!}
           </div>
         </div>
-        <div class="col-6"></div>
+
+        <div class="col-12">
+          <div class="form-group mb-3">
+            <label for="">Glosa</label>
+            <textarea class="form-control" wire:model.defer="glosa" rows="2" placeholder="Glosa"></textarea>
+          </div>
+        </div>
         <hr>
         <h5 class="mb-3">Seleccione los productos de la Compra</h5>
         <div class="col-12 col-md-4">
@@ -84,11 +90,7 @@
           </tfoot>
         </table>
       </div>
-      <div class="form-group mb-3">
-        <label for="">Observaciones</label>
-        <textarea class="form-control" wire:model.defer="observaciones" rows="2"
-          placeholder="Observaciones de la compra (Opcional)"></textarea>
-      </div>
+
       <div class="form-group">
         <button class="btn btn-primary" wire:click='registrar'>Registrar Compra <i class="fas fa-save"></i></button>
       </div>

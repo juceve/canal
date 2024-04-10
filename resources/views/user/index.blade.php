@@ -11,8 +11,8 @@ User
         <h4>Usuarios</h4>
 
         <div class="float-right">
-            {{-- <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
-                <i class="fas fa-plus"></i> Nuevo --}}
+            <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
+                <i class="fas fa-plus"></i> Nuevo
             </a>
         </div>
     </div>
@@ -69,6 +69,8 @@ User
                                                 <a href="{{ route('users.asignaRol', $user->id) }}"
                                                     class="dropdown-item"><i class="fas fa-user-shield"></i> Asignar
                                                     Rol</a>
+                                                <a href="{{ route('resetpassword', $user->id) }}"
+                                                    class="dropdown-item"><i class="fas fa-key"></i> Reset Password</a>
                                                 @endcan
                                                 <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                                     @can('users.edit')

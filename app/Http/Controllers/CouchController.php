@@ -61,7 +61,7 @@ class CouchController extends Controller
     {
         $couch = Couch::find($id);
 
-        return view('couch.show', compact('couch'));
+        return view('couch.show', compact('couch'))->with('i', 1);
     }
 
     /**

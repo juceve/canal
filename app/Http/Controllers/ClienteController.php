@@ -163,7 +163,7 @@ class ClienteController extends Controller
     {
         $cliente = Cliente::find($id);
         $estadofisico = Datosfisico::where('cliente_id', $cliente->id)->orderBy('id', 'desc')->first();
-        return view('cliente.show', compact('cliente', 'estadofisico'));
+        return view('cliente.show', compact('cliente', 'estadofisico'))->with('i', 1);
     }
 
 

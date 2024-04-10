@@ -168,3 +168,34 @@ function remLicSusCli($fecha, $cliente_id)
     return true;
   }
 }
+function obtenerIniciales($nombre)
+{
+  $iniciales = ''; // Variable para almacenar las iniciales
+
+  // Dividir el nombre en palabras
+  $palabras = explode(' ', $nombre);
+
+  // Iterar sobre cada palabra y obtener la primera letra
+  foreach ($palabras as $palabra) {
+    $inicial = substr($palabra, 0, 1); // Obtener la primera letra de la palabra
+    $iniciales .= $inicial; // Agregar la inicial a la cadena de iniciales
+  }
+
+  return strtolower(substr($iniciales, 0, 2));
+}
+
+function generarNumeroAleatorio()
+{
+  $numeros_generados = array();
+  $intentos_maximos = 1000;
+
+  for ($i = 0; $i < $intentos_maximos; $i++) {
+    $numero_aleatorio = str_pad(rand(0, 9999), 4, "0", STR_PAD_LEFT);
+    if (!in_array($numero_aleatorio, $numeros_generados)) {
+      $numeros_generados[] = $numero_aleatorio;
+      return $numero_aleatorio;
+    }
+  }
+
+  return "160";
+}
